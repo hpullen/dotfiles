@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Set volume to zero on wakeup
+osascript -e 'set volume 0'

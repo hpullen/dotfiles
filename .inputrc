@@ -1,0 +1,21 @@
+# Key bindings: up/down arrow searches through history
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\eOA": history-search-backward
+"\eOB": history-search-forward
+"\e[C": forward-char
+"\e[D": backward-char
+
+# vi settings
+$if mode=vi
+    # normal mode
+    set keymap vi-command
+    "v": vi-insert-mode # stop weird effect when hitting v
+    # insert mode
+    set keymap vi-insert
+    "jk": vi-movement-mode # remap escape
+$endif
+
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set show-mode-in-prompt on
