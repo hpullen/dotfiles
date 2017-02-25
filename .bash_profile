@@ -1,12 +1,12 @@
 # Setup root
 . ~/ROOT/bin/thisroot.sh
-alias root="root -l"
+#alias root="root -l"
 
 # Current working directory
 WORK="/Users/hannahpullen/pplx/analysis/monte_carlo/reco_efficiency"
 
 # Autojump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && source /usr/local/etc/profile.d/autojump.sh
+#[ -f /usr/local/etc/profile.d/autojump.sh ] && source /usr/local/etc/profile.d/autojump.sh
 
 # Disable tab autocomplete hidden files
 bind 'set match-hidden-files off'
@@ -49,12 +49,16 @@ set -o emacs
 stty werase undef
 bind '"\C-w":kill-whole-line'
 
+# Alias for git push
+alias push="git push -u origin master"
+
 # Increase size of command history
 HISTSIZE=1000
 
 # General functions
 # Change directory and print contents
 function cdl { cd "$@" && clear && ls; }
+alias cd="cdl"
 # Move contents of dir into a new subdir
 function mvToDir {
     DIRNAME="$1"
@@ -106,7 +110,7 @@ function mount_lxplus {
         echo "lxplus already mounted"
     else
         mkdir ~/lxplus
-        sshfs -o idmap=user hpullen@lxplus.cern.ch:/afs/cern.ch/work/h/hpullen ~/lxplus 
+        sshfs -o idmap=user hpullen@lxplus.cern.ch:/afs/cern.ch/user/h/hpullen ~/lxplus 
     fi
 }
 function mount_gangadir {
