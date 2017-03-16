@@ -3,7 +3,7 @@ export TERM='xterm-256color'
 export EDITOR='vim'
 
 # Use macvim instead of vim
-#alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 # Path to oh-my-zsh installation
 export ZSH=/Users/hannahpullen/.oh-my-zsh
