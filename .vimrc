@@ -6,7 +6,7 @@ set relativenumber
 set number
 set mouse=nicr
 set autoindent
-"set smartindent
+set smartindent
 set undofile
 set backspace=indent,eol,start
 set cursorline
@@ -133,9 +133,6 @@ set foldnestmax=10 " Limit no. of nested folds
 nnoremap <space> za
 set foldmethod=syntax
 
-" Add restore_view plugin to path
-set runtimepath^=~/.vim/bundle/restore_view.vim
-
 "Colourscheme
 set background=dark
 colorscheme solarized
@@ -143,6 +140,9 @@ colorscheme solarized
 "colorscheme Tomorrow-night
 
 " Plugins
+" Add restore_view plugin
+set runtimepath^=~/.vim/bundle/restore_view.vim
+
 " VimPlug
 call plug#begin()
 " Commenting shortcut: \cc to comment
@@ -163,6 +163,8 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'vim-syntastic/syntastic'
 " Fugitive
 Plug 'tpope/vim-fugitive'
+" Fix FocusGained and FocusLost in tmux
+Plug 'tmux-plugins/vim-tmux-focus-events'
 call plug#end()
 
 "Vundle
@@ -173,6 +175,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " YouCompleteMe autocompleter
 Plugin 'Valloric/YouCompleteMe'
+" Plugin for .tmux.conf
+Plugin 'tmux-plugins/vim-tmux'
 call vundle#end()
 filetype plugin indent on
 
@@ -199,7 +203,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_c_include_dirs = ['../../include','../include','../inc']
-let g:syntastic_python_checkers = ['pep8']
+let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_loc_list_height=5
 nnoremap <silent> <leader>r :SyntasticReset<CR>
 "let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,W801"'

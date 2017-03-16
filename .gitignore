@@ -1,0 +1,8 @@
+*
+!.bash_profile
+!.inputrc
+!.sleep
+!.tmux.conf
+!.vimrc
+!.wakeup
+!.gitignore
