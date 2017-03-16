@@ -5,6 +5,12 @@ export EDITOR='vim'
 # Use macvim instead of vim
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
+# ROOT setup
+cd ~/ROOT/bin/
+source thisroot.sh
+cd
+alias root="root -l"
+
 # Path to oh-my-zsh installation
 export ZSH=/Users/hannahpullen/.oh-my-zsh
 
