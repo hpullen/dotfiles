@@ -15,16 +15,17 @@ set wildmenu
 "set lazyredraw
 set ttyfast
 set showmatch
+set textwidth=83
 set colorcolumn=84
 set ruler
 set visualbell
 set t_Co=256
 inoremap jk <ESC>
-nnoremap ; :
+
+" Make Y behave like C and D
+nnoremap Y y$
 
 " Modify search options
-nnoremap / /\v
-vnoremap / /\v
 set ignorecase
 set smartcase
 set gdefault
@@ -46,10 +47,6 @@ au FileType c,cpp setlocal comments-=:// comments+=f://
 
 " Strip all trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-
-" Scrolling
-"noremap <ScrollWheelUp> <C-Y>
-"nnoremap <ScrollWheelDown <C-E>
 
 " Create equals signs before/after line of text
 nnoremap <silent> <leader>1 yypVr=
@@ -110,8 +107,6 @@ Plug 'vim-syntastic/syntastic'
 "Plug 'tpope/vim-fugitive'
 " YCM generator
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
-"" Tmux conf syntax highlighting
-"Plug 'tmux-plugins/vim-tmux'
 "" Solarized for color_coded
 Plug 'NigoroJr/color_coded-colorschemes'
 call plug#end()
@@ -153,5 +148,12 @@ nnoremap <silent> <leader>r :SyntasticReset<CR>
 colorscheme solarizeded
 
 " Timeout
-set timeoutlen=1000
-set ttimeoutlen=10
+set timeoutlen=200
+set ttimeoutlen=200
+
+" Common spelling mistakes autocorrect
+iab stdLLcout std::cout
+iab stdLLendl; std::endl;
+
+" Easy insert bash shebang
+iab shebang #!/usr/bin/env bash
