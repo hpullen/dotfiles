@@ -49,8 +49,8 @@ au FileType c,cpp setlocal comments-=:// comments+=f://
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Create equals signs before/after line of text
-nnoremap <silent> <leader>1 yypVr=0r#lr<space> 
-nnoremap <silent> <leader>2 yykpVr=0r#lr<space> 
+nnoremap <silent> <leader>1 yypVr=
+nnoremap <silent> <leader>2 yykpVr=j
 nnoremap <silent> <leader>3 0i#<space><esc>yypVr=0r#lr<space>kyykpVr=0r#lr<space>jj
 
 " Copy to system clipboard in visual mode
