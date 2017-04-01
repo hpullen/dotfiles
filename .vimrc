@@ -49,9 +49,9 @@ au FileType c,cpp setlocal comments-=:// comments+=f://
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Create equals signs before/after line of text
-nnoremap <silent> <leader>1 yypVr=
-nnoremap <silent> <leader>2 yykpVr=
-nnoremap <silent> <leader>3 yypVr=kyykpVr=
+nnoremap <silent> <leader>1 yypVr=0r#lr<space> 
+nnoremap <silent> <leader>2 yykpVr=0r#lr<space> 
+nnoremap <silent> <leader>3 0i#<space><esc>yypVr=0r#lr<space>kyykpVr=0r#lr<space>jj
 
 " Copy to system clipboard in visual mode
 vnoremap <silent> <leader>y "+y
@@ -107,8 +107,10 @@ Plug 'vim-syntastic/syntastic'
 "Plug 'tpope/vim-fugitive'
 " YCM generator
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
-"" Solarized for color_coded
+" Solarized for color_coded
 Plug 'NigoroJr/color_coded-colorschemes'
+" Tabularize
+Plug 'godlygeek/tabular'
 call plug#end()
 
 " Vundle (needed for YouCompleteMe)
