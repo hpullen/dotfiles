@@ -64,6 +64,9 @@ set pastetoggle=<F3>
 nnoremap <silent> <Left> :bprevious<CR>
 nnoremap <silent> <Right> :bnext<CR>
 
+" Use space for quickly executing macros
+nnoremap <space> @q
+
 " Move vertically by visual line
 nnoremap j gj
 nnoremap k gk
