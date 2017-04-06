@@ -48,10 +48,14 @@ au FileType c,cpp setlocal comments-=:// comments+=f://
 " Strip all trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
-" Create equals signs before/after line of text
+" Create equals signs after line of text
 nnoremap <silent> <leader>1 yypVr=
-nnoremap <silent> <leader>2 yykpVr=j
-nnoremap <silent> <leader>3 0i#<space><esc>yypVr=0r#lr<space>kyykpVr=0r#lr<space>jj
+" Python comments
+nnoremap <silent> <leader>2 I#<space><esc>yyPVr=0r#lr<space>jyypVr=0r#lr<space>
+" C comments
+noremap <silent> <leader>3 I//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
+" std::cout
+noremap <silent> <leader>4 Istd::cout<space><<<space>"<esc>A"<space><<<space>std::endl;<esc>
 
 " Copy to system clipboard in visual mode
 vnoremap <silent> <leader>y "+y
