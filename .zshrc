@@ -198,9 +198,6 @@ function unmount_all {
 alias mp="mount_pplx && reloadDir"
 alias mg="mount_gangadir && reloadDir"
 
-# Unmount when exiting
-alias exit="unmount_all && exit"
-
 # tmux related aliases and functions
 alias ks="tmux kill-session"
 alias kp="tmux kill-pane"
