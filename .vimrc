@@ -186,6 +186,8 @@ Plug 'raimondi/delimitmate'
 Plug 'ctrlpvim/ctrlp.vim'
 " Undo visualization
 Plug 'mbbill/undotree'
+" Buffer closing without closing window (use :Bd)
+Plug 'moll/vim-bbye'
 call plug#end()
 
 " Vundle (needed for YouCompleteMe)
