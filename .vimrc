@@ -104,9 +104,6 @@ noremap <silent> <leader>6 ^ywwwi = new pxbbbbbea*^
 " Setup new class src file
 noremap <silent> <leader>7 "adiwi#include ""apa.hpp"o// ===========// Constructor// ==========="apa::"apa() {}// ==========// Destructor// =========="apa::~"apa() {}
 
-" Abbreviation for std::endl;
-iab endl std::endl;
-
 " Copy to system clipboard in visual mode with \y
 vnoremap <silent> <leader>y "+y
 " Paste from system clipboard with \p
@@ -154,6 +151,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 " Plugins
 " Vim-plug
 call plug#begin()
+" Vim latex
+Plug 'lervag/vimtex'
 " NerdCommenter autocommenting
 Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer
