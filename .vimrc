@@ -127,12 +127,15 @@ set foldnestmax=1
 " Start with all folds open
 set foldlevelstart=0
 set foldmethod=syntax
-" Open/close folds with space
-nnoremap <space> za
 
 " Save and reload view on closing/opening a buffer
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview 
+
+" Fix highlight colour in Sneak (need to call before colorscheme)
+autocmd ColorScheme * hi Sneak guifg=black guibg=red ctermfg=black ctermbg=red
+autocmd ColorScheme * hi SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+autocmd ColorScheme * hi SneakLabel guifg=white guibg=magenta ctermfg=white ctermbg=green
 
 " Colourscheme
 set background=dark
@@ -148,11 +151,14 @@ iab shebang #!/usr/bin/env bash
 " Files to ignore in vim wild search
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 
+" Use British english when spellchecking
+set spelllang=en_gb
+" Toggle spellcheck with \z
+nnoremap <leader>z :set spell!<CR>
+
 " Plugins
 " Vim-plug
 call plug#begin()
-" Vim latex
-Plug 'lervag/vimtex'
 " NerdCommenter autocommenting
 Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer
@@ -167,8 +173,6 @@ Plug 'vim-syntastic/syntastic'
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 " Solarized for color_coded
 Plug 'NigoroJr/color_coded-colorschemes'
-" Tabularize
-Plug 'godlygeek/tabular'
 " " Fugitive
 " Plug 'tpope/vim-fugitive'
 " " Gitgutter
@@ -177,16 +181,36 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-surround'
 " Abolish
 Plug 'tpope/vim-abolish'
-" Repeat for surround and abolish
+" Repeat for tpope plugins
 Plug 'tpope/vim-repeat'
 " Automatic bracket closing
 Plug 'raimondi/delimitmate'
-" CtrlP
+" Fuzzy file search
 Plug 'ctrlpvim/ctrlp.vim'
 " Undo visualization
 Plug 'mbbill/undotree'
 " Buffer closing without closing window (use :Bd)
 Plug 'moll/vim-bbye'
+" Autocomplete words from other tmux panes with <C-X><C-U>
+Plug 'wellle/tmux-complete.vim'
+" Snippet engine
+Plug 'SirVer/ultisnips'
+" " Snippets
+" Plug 'honza/vim-snippets'
+" Rainbow parentheses
+Plug 'junegunn/rainbow_parentheses.vim'
+" Better incremental searching
+Plug 'haya14busa/incsearch.vim'
+" Easy aligning
+Plug 'junegunn/vim-easy-align'
+" 2-character version of f and t
+Plug 'justinmk/vim-sneak'
+" Mappings  
+Plug 'tpope/vim-unimpaired'
+" More word objects
+Plug 'wellle/targets.vim'
+" Vim latex
+Plug 'lervag/vimtex'
 call plug#end()
 
 " Vundle (needed for YouCompleteMe)
@@ -282,3 +306,40 @@ let delimirMate_expand_space = 1
 " Syntax highlighting for parameter files
 highlight ParamValue ctermfg=cyan guifg=#00ffff
 highlight ParamKey ctermfg=magenta  guifg=#00ffff
+
+" Sneak remappings
+map + <Plug>Sneak_s
+map - <Plug>Sneak_S
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
+
+" easy-align mappings
+xmap ga <plug>(easyalign)
+nmap ga <plug>(easyalign)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Incsearch mappings
+" Use incsearch instead of standard
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+" Turn off highlighting when cursor moves 
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+" Toggle rainbow parentheses (in style of Unimpaired)
+map cop :RainbowParentheses!!<CR>
+
+" Ultisnips settings
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsSnippetsDir="~/.vim/myUltiSnips"
+let g:UltiSnipsSnippetDirectories = ['myUltiSnips']
