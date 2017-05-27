@@ -5,7 +5,7 @@ syntax enable
 set nocompatible
 " Hybrid line number mode
 set relativenumber
-set number  
+set number
 " Allow mouse usage
 set mouse=nicr
 " Auto/smart indentation
@@ -30,7 +30,7 @@ set ttyfast
 " Highlight matching bracket
 set showmatch
 " Wrap text at 84 characters
-set textwidth=84
+" set textwidth=84
 " Highlight column 85
 set colorcolumn=85
 " Show line/column number
@@ -72,7 +72,7 @@ set hlsearch
 " Turn off highlight with \<space>
 nnoremap <silent> <leader><space> :noh<cr>
 " Search for visually selected text with //
-vnoremap // y/\V<C-R>"<CR>  
+vnoremap // y/\V<C-R>"<CR>
 
 " Tab settings
 filetype off
@@ -91,7 +91,7 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Create equals signs after line of text
 nnoremap <silent> <leader>1 yypVr=
-" Surround line with Python comments 
+" Surround line with Python comments
 nnoremap <silent> <leader>2 I#<space><esc>yyPVr=0r#lr<space>jyypVr=0r#lr<space>
 " Surround line with C comments
 noremap <silent> <leader>3 I//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
@@ -101,13 +101,19 @@ noremap <silent> <leader>4 kddjddk^3xI//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=
 noremap <silent> <leader>5 Istd::cout<space><<<space>"<esc>A"<space><<<space>std::endl;<esc>
 " Convert normal object to pointer
 noremap <silent> <leader>6 ^ywwwi = new pxbbbbbea*^
-" Setup new class src file
-noremap <silent> <leader>7 "adiwi#include ""apa.hpp"o// ===========// Constructor// ==========="apa::"apa() {}// ==========// Destructor// =========="apa::~"apa() {}
+" Print variable on next line
+noremap <silent> <leader>7 ^Wywostd::cout << "pi: "A << pa<< std::endl;^
+" Indent line to match bullet point above
+noremap <leader>8 ?^\p\s<CR>ygnjPv0r<space>^
 
 " Copy to system clipboard in visual mode with \y
 vnoremap <silent> <leader>y "+y
 " Paste from system clipboard with \p
 nnoremap <silent> <leader>p "+p
+" Paste from pplx tmux clipboard file with \tp
+nnoremap <silent> <leader>tp :r ~/pplx/.tmux.clipboard<CR>
+" Paste from pplx vim clipboard with \vp
+nnoremap <silent> <leader>vp :r ~/pplx/.vim.clipboard<CR>
 
 " Toggle paste mode on and off with F3
 set pastetoggle=<F3>
@@ -130,7 +136,7 @@ set foldmethod=syntax
 
 " Save and reload view on closing/opening a buffer
 autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
+autocmd BufWinEnter *.* silent loadview
 
 " Fix highlight colour in Sneak (need to call before colorscheme)
 autocmd ColorScheme * hi Sneak guifg=black guibg=red ctermfg=black ctermbg=red
@@ -153,8 +159,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 
 " Use British english when spellchecking
 set spelllang=en_gb
-" Toggle spellcheck with \z
-nnoremap <leader>z :set spell!<CR>
 
 " Plugins
 " Vim-plug
@@ -205,12 +209,18 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/vim-easy-align'
 " 2-character version of f and t
 Plug 'justinmk/vim-sneak'
-" Mappings  
+" Mappings
 Plug 'tpope/vim-unimpaired'
 " More word objects
 Plug 'wellle/targets.vim'
 " Vim latex
 Plug 'lervag/vimtex'
+" Bullet points
+Plug 'dkarter/bullets.vim'
+" Hardmode (no hjkl, arrows, pgup/down)
+Plug 'wikitopian/hardmode'
+" Easy vim-tmux navigation
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " Vundle (needed for YouCompleteMe)
@@ -303,10 +313,6 @@ colorscheme solarizeded
 let delimitMate_expand_cr = 1
 let delimirMate_expand_space = 1
 
-" Syntax highlighting for parameter files
-highlight ParamValue ctermfg=cyan guifg=#00ffff
-highlight ParamKey ctermfg=magenta  guifg=#00ffff
-
 " Sneak remappings
 map + <Plug>Sneak_s
 map - <Plug>Sneak_S
@@ -325,7 +331,7 @@ vmap <Enter> <Plug>(EasyAlign)
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-" Turn off highlighting when cursor moves 
+" Turn off highlighting when cursor moves
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
@@ -343,3 +349,11 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsSnippetsDir="~/.vim/myUltiSnips"
 let g:UltiSnipsSnippetDirectories = ['myUltiSnips']
+
+" Filetypes to use Bullets.vim
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]

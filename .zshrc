@@ -1,6 +1,6 @@
 # Export environment variabes
 export TERM='xterm-256color'
-export EDITOR='vim'
+export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 # Use macvim instead of vim
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
@@ -14,7 +14,7 @@ alias root="root -l"
 # Path to oh-my-zsh installation
 export ZSH=/Users/hannahpullen/.oh-my-zsh
 
-# Set name of the theme to load.
+# Set theme
 POWERLEVEL9K_MODE='awesome-fontconfig'
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
@@ -23,9 +23,11 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_beginning"
 POWERLEVEL9K_STATUS_VERBOSE="FALSE"
+
 # Colours for OS icon
 POWERLEVEL9K_OS_ICON_BACKGROUND="white"
 POWERLEVEL9K_OS_ICON_FOREGROUND="black"
+
 # Battery symbols and colours
 POWERLEVEL9K_BATTERY_CHARGING='yellow'
 POWERLEVEL9K_BATTERY_CHARGED='green'
@@ -33,7 +35,7 @@ POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
 POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
 POWERLEVEL9K_BATTERY_LOW_COLOR='red'
 POWERLEVEL9K_BATTERY_ICON=' '
-#POWERLEVEL9K_BATTERY_ICON='\uf1e6 '
+
 # Time format
 POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M}"
 
@@ -44,39 +46,39 @@ if [ -d ~/pplx ] ; then
 else
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
 fi
+
 # Right prompt: return status of last command, battery level, time
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery time)    
 
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="false"
 
-# Change the command execution time stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# History time stamp format
 HIST_STAMPS="dd/mm/yyyy"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Plugins to load
 plugins=(common-aliases git osx python pip zsh-syntax-highlighting)
 
+# Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# Apply settings to turn off some oh-my-zsh features whenever oh-my-zsh is loaded
+# Turn off some oh-my-zsh features whenever oh-my-zsh is loaded
 function modify_omz {
     # Get rid of rm -i alias
     unalias rm
     # Stop sharing history between panes in tmux
     setopt nosharehistory
 }
-# Apply function after 1st oh-my-zsh load
+# Apply function on first load
 modify_omz
 
 # Turn off autocorrection
 unsetopt correct
 
 # General aliases
-alias zshrc="vim ~/.zshrc"
+alias zshrc="/Applications/MacVim.app/Contents/MacOS/Vim ~/.zshrc"
 alias sourcez="source ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
+alias vimrc="/Applications/MacVim.app/Contents/MacOS/Vim ~/.vimrc"
 alias ls="ls -G"
 alias la="ls -a"
 alias c="clear"
@@ -87,24 +89,26 @@ alias del="rmtrash"
 alias pplx="ssh -Y pullen@pplxint8.physics.ox.ac.uk"
 alias lxplus="ssh -Y hpullen@lxplus.cern.ch"
 
-# Suffix aliases
-alias -s txt=vim
-alias -s C=vim
-alias -s cpp=vim
-alias -s h=vim
-alias -s hpp=vim
-alias -s py=vim
+# Suffix aliases (automatically open these files in vim)
+alias -s txt=$EDITOR
+alias -s C=$EDITOR
+alias -s cpp=$EDITOR
+alias -s h=$EDITOR
+alias -s hpp=$EDITOR
+alias -s py=$EDITOR
 
 # General functions
 # cd and cls
 function cdl { cd "$@" && clear && ls; }
-# Move contents of dir into a new subdir
+
+# Move contents of directory into a new subdirectory
 function mvToDir {
     DIRNAME="$1"
     mkdir ../$DIRNAME
     mv * ../$DIRNAME
     mv ../$DIRNAME .
 }
+
 # Delete all files in directory except one
 function delAllExcept {
     FILENAME="$1"
@@ -112,14 +116,17 @@ function delAllExcept {
     del *
     mv ../$FILENAME .
 }
-# Restore deleted files
+
+# Restore deleted files from trash
 function restore { 
     FILENAME="$1"
     TRASHPATH="~/.Trash/$FILENAME"
     mv "$TRASHPATH" .
 }
+
 # Mark the location of a directory to return to later
 function mark { export $1="`pwd`"; }
+
 # Reload directory if it has broken (e.g. due to closed ssh connection)
 function reloadDir { 
     cwd="`pwd`"
@@ -135,6 +142,7 @@ function reloadDir {
     source $ZSH/oh-my-zsh.sh
     modify_omz
 }
+
 # Copy contents of a directory to another directory
 function copyContents {
     OLDDIR='$1'
@@ -195,23 +203,28 @@ function unmount_all {
     source $ZSH/oh-my-zsh.sh
     modify_omz
 }
+
+# Mounting aliases
 alias mp="mount_pplx && reloadDir"
 alias mg="mount_gangadir && reloadDir"
 
-# tmux related aliases and functions
+# tmux aliases 
 alias ks="tmux kill-session"
 alias kp="tmux kill-pane"
 alias kw="tmux kill-window"
 alias td="tmux detach"
+
 # Split tmux into three panes for coding
 function tmux_coding {
     tmux split-window -h\;
     tmux split-window -v -p 20
 }
+
 # Get rid of all panes except the first
 function tmux_normal {
     tmux kill-pane -a -t 0
 }
+
 # If in tmux, detach rather than exit
 function exit {
     if [[ -z $TMUX ]]; then
@@ -219,6 +232,7 @@ function exit {
     else
         tmux detach
     fi
+
+
+
 }
-
-
