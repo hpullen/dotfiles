@@ -160,6 +160,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 " Use British english when spellchecking
 set spelllang=en_gb
 
+" Use matchit
+packadd! matchit
+
 " Plugins
 " Vim-plug
 call plug#begin()

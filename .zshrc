@@ -158,6 +158,7 @@ function mount_pplx {
     else
         mkdir ~/pplx
         sshfs -o idmap=user pullen@pplxint8.physics.ox.ac.uk:/home/pullen ~/pplx
+        export CDPATH=/Users/hannahpullen/pplx/analysis/tuple_scripts/analysis_code/
     fi
 }
 function mount_lxplus {
@@ -179,6 +180,7 @@ function mount_gangadir {
 function unmount_all {
     if [ -d ~/pplx ]; then
         umount -f ~/pplx
+        unset CDPATH
         rmdir ~/pplx
         echo "pplx unmounted"
     else
