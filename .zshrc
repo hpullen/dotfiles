@@ -57,7 +57,7 @@ COMPLETION_WAITING_DOTS="false"
 HIST_STAMPS="dd/mm/yyyy"
 
 # Plugins to load
-plugins=(common-aliases git osx python pip zsh-syntax-highlighting)
+plugins=(common-aliases brew git osx extract python pip zsh-syntax-highlighting)
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -232,7 +232,4 @@ function exit {
     else
         tmux detach
     fi
-
-
-
 }
