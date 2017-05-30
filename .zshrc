@@ -113,6 +113,9 @@ alias -s h=$EDITOR
 alias -s hpp=$EDITOR
 alias -s py=$EDITOR
 
+# CDPATH: contains path to pplx analysis code
+export CDPATH=/Users/hannahpullen/pplx/analysis/tuple_scripts/analysis_code/
+
 # General functions
 # cd and cls
 function cdl { cd "$@" && clear && ls; }
@@ -174,7 +177,6 @@ function mount_pplx {
     else
         mkdir ~/pplx
         sshfs -o idmap=user pullen@pplxint8.physics.ox.ac.uk:/home/pullen ~/pplx
-        export CDPATH=/Users/hannahpullen/pplx/analysis/tuple_scripts/analysis_code/
     fi
 }
 function mount_lxplus {
@@ -196,7 +198,6 @@ function mount_gangadir {
 function unmount_all {
     if [ -d ~/pplx ]; then
         umount -f ~/pplx
-        unset CDPATH
         rmdir ~/pplx
         echo "pplx unmounted"
     else
