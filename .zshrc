@@ -56,6 +56,9 @@ COMPLETION_WAITING_DOTS="false"
 # History time stamp format
 HIST_STAMPS="dd/mm/yyyy"
 
+# Don't store commands starting with space in history
+setopt HIST_IGNORE_SPACE
+
 # Plugins to load
 plugins=(common-aliases brew git osx extract python pip zsh-syntax-highlighting)
 
@@ -79,11 +82,14 @@ unsetopt correct
 alias zshrc="/Applications/MacVim.app/Contents/MacOS/Vim ~/.zshrc"
 alias sourcez="source ~/.zshrc"
 alias vimrc="/Applications/MacVim.app/Contents/MacOS/Vim ~/.vimrc"
-alias ls="ls -G"
-alias la="ls -a"
 alias c="clear"
-alias cls="clear && ls"    
 alias del="rmtrash"
+
+# Aliases with space (don't store in history)
+alias ls=" ls -G"
+alias la=" ls -a"
+alias cls=" clear && ls"
+alias cd=" cd"
 
 # ssh aliases
 alias pplx="ssh -Y pullen@pplxint8.physics.ox.ac.uk"

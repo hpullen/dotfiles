@@ -4,6 +4,7 @@
 if [ -d ~/pplx ]; then  
     umount -f ~/pplx
     rmdir ~/pplx
+    unset CDPATH
     echo "pplx unmounted"
 else
     echo "pplx not currently mounted"
