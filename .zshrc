@@ -75,6 +75,14 @@ function modify_omz {
 # Apply function on first load
 modify_omz
 
+# Directory colours
+# For normal ls, solarized-like colorscheme
+export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+# For GNU ls use solarized dark colorscheme
+eval `gdircolors /Users/hannahpullen/clone/dircolors-solarized/dircolors.ansi-dark`
+# Use solarized in zsh tab completion
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 # Turn off autocorrection
 unsetopt correct
 
@@ -86,9 +94,11 @@ alias c="clear"
 alias del="rmtrash"
 
 # Aliases with space (don't store in history)
-alias ls=" ls -G"
-alias la=" ls -a"
-alias cls=" clear && ls"
+# Use GNU ls for colors
+alias ls=" gls --color=auto"
+alias la=" gls -a --color=auto"
+alias ll=" gls -l --color=auto"
+alias cls=" clear && gls --color=auto"
 alias cd=" cd"
 
 # ssh aliases
