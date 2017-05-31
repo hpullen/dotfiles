@@ -30,7 +30,7 @@ set ttyfast
 " Highlight matching bracket
 set showmatch
 " Wrap text at 84 characters
-" set textwidth=84
+set textwidth=84
 " Highlight column 85
 set colorcolumn=85
 " Show line/column number
@@ -159,6 +159,10 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 
 " Use British english when spellchecking
 set spelllang=en_gb
+
+" Toggle text wrapping with ]t and [t
+nnoremap [os :setlocal tw=80
+nnoremap ]os :setlocal tw=0
 
 " Use matchit
 packadd! matchit
@@ -359,4 +363,4 @@ let g:bullets_enabled_file_types = [
     \ 'text',
     \ 'gitcommit',
     \ 'scratch'
-    \]
+     \]
