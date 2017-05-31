@@ -151,9 +151,6 @@ colorscheme solarized
 set timeoutlen=200
 set ttimeoutlen=200
 
-" Easy insert bash shebang
-iab shebang #!/usr/bin/env bash
-
 " Files to ignore in vim wild search
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
 
