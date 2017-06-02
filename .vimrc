@@ -23,6 +23,7 @@ set encoding=utf-8
 set scrolloff=10
 " Tab completion in execute mode
 set wildmenu
+set wildmode=longest:full,full
 " Only redraw when needed
 set lazyredraw
 " Indicate fast terminal
@@ -44,11 +45,11 @@ set t_Co=256
 set splitright
 set splitbelow
 
-" Map alt + hjkl to split movements
-nnoremap ∆ <C-w>j
-nnoremap ˚ <C-w>k
-nnoremap ˙ <C-w>h
-nnoremap ¬ <C-w>l
+" Map alt + hjkl to split movements REPLACED WITH C-hjkl
+" nnoremap ∆ <C-w>j
+" nnoremap ˚ <C-w>k
+" nnoremap ˙ <C-w>h
+" nnoremap ¬ <C-w>l
 
 " Make Y behave like C and D (yank to end of line)
 nnoremap Y y$
@@ -300,7 +301,7 @@ let g:ctrlp_match_window = 'results:20'
 " Open multiple files in same window
 let g:ctrlp_open_multiple_files = '1vjr'
 " Set working directory to nearest ancestor containing .git
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 0
 " Files to ignore
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
