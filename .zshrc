@@ -125,6 +125,9 @@ export CDPATH=/Users/hannahpullen/pplx/analysis/tuple_scripts/analysis_code/
 # Load zmv. Use -n to show what will be done, without executing
 autoload -U zmv
 
+# Load zcalc (command line calculator)
+autoload -Uz zcalc
+
 # General functions
 # cd and cls
 function cdl { cd "$@" && clear && ls; }

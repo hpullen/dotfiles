@@ -126,6 +126,9 @@ nnoremap <silent> <Right> :bnext<CR>
 nnoremap j gj
 nnoremap k gk
 
+" Dictionary for completion
+" set dictionary+=/usr/share/dict/words
+
 " Folding
 set foldenable
 " Only allow one level of folding
