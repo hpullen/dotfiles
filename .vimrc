@@ -23,7 +23,6 @@ set encoding=utf-8
 set scrolloff=10
 " Tab completion in execute mode
 set wildmenu
-set wildmode=longest:full,full
 " Only redraw when needed
 set lazyredraw
 " Indicate fast terminal
@@ -132,7 +131,7 @@ set foldenable
 " Only allow one level of folding
 set foldnestmax=1
 " Start with all folds open
-set foldlevelstart=0
+set foldlevelstart=1
 set foldmethod=syntax
 
 " Save and reload view on closing/opening a buffer
@@ -204,10 +203,6 @@ Plug 'moll/vim-bbye'
 Plug 'wellle/tmux-complete.vim'
 " Snippet engine
 Plug 'SirVer/ultisnips'
-" " Snippets
-" Plug 'honza/vim-snippets'
-" Rainbow parentheses
-Plug 'junegunn/rainbow_parentheses.vim'
 " Better incremental searching
 Plug 'haya14busa/incsearch.vim'
 " Easy aligning
@@ -301,7 +296,7 @@ let g:ctrlp_match_window = 'results:20'
 " Open multiple files in same window
 let g:ctrlp_open_multiple_files = '1vjr'
 " Set working directory to nearest ancestor containing .git
-let g:ctrlp_working_path_mode = 0
+let g:ctrlp_working_path_mode = 'ra'
 " Files to ignore
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {

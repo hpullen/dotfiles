@@ -1,3 +1,6 @@
+# Save current directory
+CWD="`pwd`"
+
 # Export environment variabes
 export TERM='xterm-256color'
 export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
@@ -100,6 +103,9 @@ alias la=" gls -a --color=auto"
 alias ll=" gls -l --color=auto"
 alias cls=" clear && gls --color=auto"
 alias cd=" cd"
+
+# Use colordiff instead of diff
+alias diff colordiff
 
 # ssh aliases
 alias pplx="ssh -Y pullen@pplxint8.physics.ox.ac.uk"
@@ -255,3 +261,6 @@ function exit {
         tmux detach
     fi
 }
+
+# cd to previous working directory
+cd $CWD
