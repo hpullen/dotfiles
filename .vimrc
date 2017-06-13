@@ -1,4 +1,9 @@
-" General settings
+" =====
+" VIMRC
+" =====
+
+" Settings {{{
+" General settings {{{
 " Syntax highlighting
 syntax enable
 " No need to be compatible with vi
@@ -39,27 +44,25 @@ set ruler
 set visualbell
 " Allow bright colours
 set t_Co=256
+" Toggle paste mode on and off with F3
+set pastetoggle=<F3>
+" Timeout
+set timeoutlen=200
+set ttimeoutlen=200
+" Files to ignore in vim wild search
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
+" Use British english when spellchecking
+set spelllang=en_gb
+" Use matchit
+packadd! matchit
+" -------------------------------------------------- }}}
 
-" More natural split settings
+" Split settings {{{
 set splitright
 set splitbelow
+" -------------------------------------------------- }}}
 
-" Map alt + hjkl to split movements REPLACED WITH C-hjkl
-" nnoremap ∆ <C-w>j
-" nnoremap ˚ <C-w>k
-" nnoremap ˙ <C-w>h
-" nnoremap ¬ <C-w>l
-
-" Make Y behave like C and D (yank to end of line)
-nnoremap Y y$
-
-" Split line with K
-nnoremap K i<CR><ESC>
-" Split line and add quotes with \k and \j
-nnoremap <leader>k i"<CR>"<ESC>
-nnoremap <leader>j i'<CR>'<ESC>
-
-" Modify search options
+" Search settings {{{
 " Smart case sensitivity
 set ignorecase
 set smartcase
@@ -69,26 +72,55 @@ set gdefault
 set incsearch
 " Highlight matches
 set hlsearch
-" Turn off highlight with \<space>
-nnoremap <silent> <leader><space> :noh<cr>
-" Search for visually selected text with //
-vnoremap // y/\V<C-R>"<CR>
+" -------------------------------------------------- }}}
 
-" Tab settings
+" Tab settings {{{
 filetype off
 filetype plugin indent on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+" -------------------------------------------------- }}} 
 
-" Disable autocommenting on new lines
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-au FileType c,cpp setlocal comments-=:// comments+=f://
+" Fold settings {{{
+set foldenable
+" Only allow one level of folding
+set foldnestmax=1
+" Start with all folds open
+set foldlevelstart=1
+set foldmethod=syntax
+" -------------------------------------------------- }}} 
 
+" Colourscheme {{{
+set background=dark
+colorscheme solarized
+" -------------------------------------------------- }}} 
+
+" -------------------------------------------------- }}}
+
+" Mappings {{{
+
+" General mappings {{{
+" Make Y behave like C and D (yank to end of line)
+nnoremap Y y$
+" Split line with K
+nnoremap K i<CR><ESC>
+" Split line and add quotes with \k and \j
+nnoremap <leader>k i"<CR>"<ESC>
+nnoremap <leader>j i'<CR>'<ESC>
+" Turn off highlight with \<space>
+nnoremap <silent> <leader><space> :noh<cr>
+" Search for visually selected text with //
+vnoremap // y/\V<C-R>"<CR>
 " Strip all trailing whitespace with \W
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+" Toggle text wrapping with ]t and [t
+nnoremap [os :setlocal tw=80
+nnoremap ]os :setlocal tw=0
+" -------------------------------------------------- }}} 
 
+" Leader + number mappings {{{
 " Create equals signs after line of text
 nnoremap <silent> <leader>1 yypVr=
 " Surround line with Python comments
@@ -105,7 +137,9 @@ noremap <silent> <leader>6 ^ywwwi = new pxbbbbbea*^
 noremap <silent> <leader>7 ^Wywostd::cout << "pi: "A << pa<< std::endl;^
 " Indent line to match bullet point above
 noremap <leader>8 ?^\p\s<CR>ygnjPv0r<space>^
+" -------------------------------------------------- }}} 
 
+" Copy/paste mappings {{{
 " Copy to system clipboard in visual mode with \y
 vnoremap <silent> <leader>y "+y
 " Paste from system clipboard with \p
@@ -114,61 +148,70 @@ nnoremap <silent> <leader>p "+p
 nnoremap <silent> <leader>tp :r ~/pplx/.tmux.clipboard<CR>
 " Paste from pplx vim clipboard with \vp
 nnoremap <silent> <leader>vp :r ~/pplx/.vim.clipboard<CR>
+" -------------------------------------------------- }}} 
 
-" Toggle paste mode on and off with F3
-set pastetoggle=<F3>
-
+" Navigation mappings {{{
 " Remap left and right to browse buffers in normal mode
 nnoremap <silent> <Left> :bprevious<CR>
 nnoremap <silent> <Right> :bnext<CR>
-
 " Move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+" -------------------------------------------------- }}} 
 
-" Dictionary for completion
-" set dictionary+=/usr/share/dict/words
+" -------------------------------------------------- }}} 
 
-" Folding
-set foldenable
-" Only allow one level of folding
-set foldnestmax=1
-" Start with all folds open
-set foldlevelstart=1
-set foldmethod=syntax
+" Autocommands {{{
 
+" C/cpp commands {{{
+" Disable autocommenting on new lines 
+augroup filetype_C
+    autocmd!
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd FileType c,cpp setlocal comments-=:// comments+=f://
+augroup END
+" -------------------------------------------------- }}} 
+
+" Save view {{{
 " Save and reload view on closing/opening a buffer
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+augroup saveView
+    autocmd!
+    autocmd BufWinLeave *.* mkview
+    autocmd BufWinEnter *.* silent loadview
+augroup END
+" -------------------------------------------------- }}} 
 
+" Sneak highlight fix {{{
 " Fix highlight colour in Sneak (need to call before colorscheme)
-autocmd ColorScheme * hi Sneak guifg=black guibg=red ctermfg=black ctermbg=red
-autocmd ColorScheme * hi SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
-autocmd ColorScheme * hi SneakLabel guifg=white guibg=magenta ctermfg=white ctermbg=green
+augroup fixSneakHighlight
+    autocmd!
+    autocmd ColorScheme * hi Sneak guifg=black guibg=red ctermfg=black ctermbg=red
+    autocmd ColorScheme * hi SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+    autocmd ColorScheme * hi SneakLabel guifg=white guibg=magenta ctermfg=white ctermbg=green
+augroup END
+" -------------------------------------------------- }}} 
 
-" Colourscheme
-set background=dark
-colorscheme solarized
+" Text file commands {{{
+" Use spellcheck in text files
+augroup filetype_text
+    autocmd!
+    autocmd FileType text setlocal spell
+augroup END
+" -------------------------------------------------- }}} 
 
-" Timeout
-set timeoutlen=200
-set ttimeoutlen=200
+" Vim file commands {{{
+" Use marker folding in vim files
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" -------------------------------------------------- }}} 
 
-" Files to ignore in vim wild search
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~
+" -------------------------------------------------- }}} 
 
-" Use British english when spellchecking
-set spelllang=en_gb
+" Plugins {{{
 
-" Toggle text wrapping with ]t and [t
-nnoremap [os :setlocal tw=80
-nnoremap ]os :setlocal tw=0
-
-" Use matchit
-packadd! matchit
-
-" Plugins
-" Vim-plug
+" Vim-plug {{{
 call plug#begin()
 " NerdCommenter autocommenting
 Plug 'scrooloose/nerdcommenter'
@@ -225,8 +268,9 @@ Plug 'wikitopian/hardmode'
 " Easy vim-tmux navigation
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
+" -------------------------------------------------- }}} 
 
-" Vundle (needed for YouCompleteMe)
+" Vundle {{{
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -237,22 +281,31 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'jeaye/color_coded'
 call vundle#end()
 filetype plugin indent on
+" -------------------------------------------------- }}} 
+" -------------------------------------------------- }}} 
 
-" NERDcommenter settings
+" Plugin settings {{{
+
+" NERDcommenter settings {{{
 " Add spaces after comment delimiter by default
 let g:NERDSpaceDelims = 1
 " Use compact syntax for multiline comments
 let g:NERDCompactSexyComs = 1
 " Trim trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+" -------------------------------------------------- }}} 
 
+" NERDTree settings {{{
 " Open NERDTree with ctrl-n
 noremap <C-n> :NERDTreeToggle<CR>
+" -------------------------------------------------- }}} 
 
+" Undotree settings {{{
 " Open undotree with \u
 nnoremap <leader>u :UndotreeToggle<CR>
+" -------------------------------------------------- }}} 
 
-" Airline settings
+" Airline settings {{{
 set laststatus=2
 " Use powerline fonts
 let g:airline_powerline_fonts=1
@@ -262,8 +315,9 @@ let g:airline_theme = 'solarized'
 let g:airline#extensions#tabline#enabled=1
 " Show filename only in buffer/tab display
 let g:airline#extensions#tabline#fnamemod = ':t'
+" -------------------------------------------------- }}} 
 
-" YouCompleteMe settings
+" YouCompleteMe settings {{{
 " Default extra conf location
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/.ycm_extra_conf.py"
 " Don't ask whether to use extra conf
@@ -271,11 +325,11 @@ let g:ycm_confirm_extra_conf = 0
 " Turn off annoying extra window
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
-
 " Use FixIt tool with \f
 noremap <leader>f :YcmCompleter FixIt<CR>
+" -------------------------------------------------- }}} 
 
-" Syntastic settings
+" Syntastic settings {{{
 " Turn off by default for c/cpp (using ycm) and python (annoying for davinci/ganga)
 let g:syntastic_mode_map = { 'passive_filetypes': ['c', 'cpp', 'python'] }
 let g:syntastic_always_populate_loc_list = 1
@@ -288,8 +342,9 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_loc_list_height=4
 " Toggle active/passive mode with \s
 nnoremap <leader>s :SyntasticToggleMode<CR>
+" -------------------------------------------------- }}} 
 
-" CtrlP settings
+" CtrlP settings {{{
 " Mappings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -308,28 +363,34 @@ let g:ctrlp_custom_ignore = {
   \ }
 " Ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" -------------------------------------------------- }}} 
 
-" Color_coded solarized colorscheme
+" Color_coded colorscheme {{{
 colorscheme solarizeded
+" -------------------------------------------------- }}} 
 
-" Still autoindent with delimitmate
+" Delimitmate settings {{{
+" Still use autoindent
 let delimitMate_expand_cr = 1
 let delimirMate_expand_space = 1
+" -------------------------------------------------- }}} 
 
-" Sneak remappings
-map + <Plug>Sneak_s
-map - <Plug>Sneak_S
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
+" Sneak remappings {{{
+nnoremap + <Plug>Sneak_s
+nnoremap - <Plug>Sneak_S
+nnoremap f <Plug>Sneak_f
+nnoremap F <Plug>Sneak_F
+nnoremap t <Plug>Sneak_t
+nnoremap T <Plug>Sneak_T
+" -------------------------------------------------- }}} 
 
-" easy-align mappings
-xmap ga <plug>(easyalign)
-nmap ga <plug>(easyalign)
-vmap <Enter> <Plug>(EasyAlign)
+" easy-align mappings {{{
+xnoremap ga <plug>(easyalign)
+nnoremap ga <plug>(easyalign)
+vnoremap <Enter> <Plug>(EasyAlign)
+" -------------------------------------------------- }}} 
 
-" Incsearch mappings
+" Incsearch mappings {{{
 " Use incsearch instead of standard
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
@@ -342,21 +403,23 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+" -------------------------------------------------- }}} 
 
-" Toggle rainbow parentheses (in style of Unimpaired)
-map cop :RainbowParentheses!!<CR>
-
-" Ultisnips settings
+" Ultisnips settings {{{
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsSnippetsDir="~/.vim/myUltiSnips"
 let g:UltiSnipsSnippetDirectories = ['myUltiSnips']
+" -------------------------------------------------- }}} 
 
-" Filetypes to use Bullets.vim
+" Bullets settings {{{
 let g:bullets_enabled_file_types = [
     \ 'markdown',
     \ 'text',
     \ 'gitcommit',
     \ 'scratch'
      \]
+" -------------------------------------------------- }}} 
+
+" -------------------------------------------------- }}} 
