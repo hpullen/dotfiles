@@ -105,7 +105,7 @@ alias cls=" clear && gls --color=auto"
 alias cd=" cd"
 
 # Use colordiff instead of diff
-alias diff colordiff
+alias diff=colordiff
 
 # ssh aliases
 alias pplx="ssh -Y pullen@pplxint8.physics.ox.ac.uk"

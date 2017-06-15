@@ -112,6 +112,10 @@ nnoremap <silent> <leader>tp :r ~/pplx/.tmux.clipboard<CR>
 " Paste from pplx vim clipboard with \vp
 nnoremap <silent> <leader>vp :r ~/pplx/.vim.clipboard<CR>
 
+" Mappings for editing/sourcing vimrc
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
+
 " Toggle paste mode on and off with F3
 set pastetoggle=<F3>
 
@@ -153,6 +157,28 @@ augroup END
 augroup filetype_text
     autocmd!
     autocmd FileType text setlocal spell
+    autocmd FileType text setlocal textwidth=0
+augroup END
+
+" Latex autocommands
+augroup filetype_tex
+    autocmd!
+    autocmd FileType tex,plaintex,latex setlocal textwidth=0
+    autocmd FileType tex,plaintex,latex setlocal spell
+    autocmd FileType tex,plaintex,latex setlocal dictionary+=~/.vim/dictionaries/dictionary
+    autocmd FileType tex,plaintex,latex inoremap <buffer> <c-d> <c-x><c-k>
+    autocmd FileType tex,plaintex,latex nnoremap <buffer> <leader>ee me?\\begin{[^}]\+}<CR>ygn<ESC>'eo<ESC>pBlceend<ESC>==:nohlsearch<CR>
+    autocmd FileType tex,plaintex,latex let b:ycm_largefile=1
+    autocmd FileType tex,plaintex,latex hi clear texItalStyle
+    autocmd BufWritePre tex,plaintex,latex hi clear texItalStyle
+augroup END
+
+" Vim file autocommands
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal shortmess+=c
+    autocmd FileType vim setlocal textwidth=0
+    autocmd FileType vim setlocal wrap
 augroup END
 
 " Colourscheme
@@ -295,14 +321,13 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 " Don't let error list get too big
 let g:syntastic_loc_list_height=4
-" Toggle active/passive mode with \s
-nnoremap <leader>s :SyntasticToggleMode<CR>
+" Toggle active/passive mode with \st
+nnoremap <leader>st :SyntasticToggleMode<CR>
 
 " CtrlP settings
 " Mappings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-noremap <c-b> :CtrlPBuffer<CR>
 " Increase number of results shown in search
 let g:ctrlp_match_window = 'results:20'
 " Open multiple files in same window
@@ -367,5 +392,6 @@ let g:bullets_enabled_file_types = [
     \ 'markdown',
     \ 'text',
     \ 'gitcommit',
-    \ 'scratch'
+    \ 'scratch',
+    \ 'tex'
      \]
