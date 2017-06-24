@@ -168,6 +168,7 @@ augroup filetype_tex
     autocmd FileType tex,plaintex,latex setlocal dictionary+=~/.vim/dictionaries/dictionary
     autocmd FileType tex,plaintex,latex inoremap <buffer> <c-d> <c-x><c-k>
     autocmd FileType tex,plaintex,latex nnoremap <buffer> <leader>ee me?\\begin{[^}]\+}<CR>ygn<ESC>'eo<ESC>pBlceend<ESC>==:nohlsearch<CR>
+    autocmd FileType tex,plaintex,latex nnoremap <buffer> <leader>ed /\u\u\.<CR>f.i\@<ESC>
     autocmd FileType tex,plaintex,latex let b:ycm_largefile=1
     autocmd FileType tex,plaintex,latex hi clear texItalStyle
     autocmd BufWritePre tex,plaintex,latex hi clear texItalStyle
