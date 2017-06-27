@@ -139,9 +139,10 @@ set foldlevelstart=1
 set foldmethod=syntax
 
 " Save and reload view on closing/opening a buffer
+set viewoptions-=options
 augroup saveView
     autocmd!
-    autocmd BufWinLeave *.* mkview
+    autocmd BufWinLeave *.* mkview! 
     autocmd BufWinEnter *.* silent loadview
 augroup END
 
