@@ -1,0 +1,22 @@
+snippet figure
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{${1:image_name}}
+	\caption{${2:A figure}}
+\label{fig:${3:$1}}
+\end{figure}
+endsnippet
+
+
+snippet doubleFigure
+\begin{figure}[h]
+	\centering
+	\begin{tabular}{ll}
+		\includegraphics[width=0.5\textwidth]{${1:image1}}
+		&
+		\includegraphics[width=0.5\textwidth]{${2:image2}}
+	\end{tabular}
+	\caption{${3:A double figure}}
+\label{fig:${4:$1}}
+\end{figure}
+endsnippet

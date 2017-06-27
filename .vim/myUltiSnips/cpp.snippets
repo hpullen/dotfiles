@@ -1,0 +1,135 @@
+snippet classheader
+#ifndef ${1:MY_CLASS_H}
+#define $1
+
+class ${2:MyClass} {
+
+public:
+	$2();
+	~$2();
+	$0
+
+private:
+
+};
+
+#endif // $1
+endsnippet
+
+
+snippet classsource
+#include "${1:MyClass}.hpp"
+
+
+// ===========
+// Constructor
+// ===========
+$1::$1() {
+}
+
+
+// ==========
+// Destructor
+// ==========
+$1::~$1() {
+}
+
+$0
+endsnippet
+
+snippet gettree
+TFile * ${1:file} = TFile::Open(${2:filename}.c_str());
+TTree * ${3:tree} = (TTree*)$1->Get("${4:DecayTree}");
+
+$0
+endsnippet
+
+
+snippet main
+#include <iostream>
+
+int main(int argc, char * argv[]) {
+
+}
+endsnippet
+
+
+snippet mainWithArgs
+#include <iostream>
+
+int main(int argc, char * argv[]) {
+
+	// Check number of input arguments
+	if (argc != ${1:2}) {
+		std::cout << "Usage: $2" << std::endl;
+		return -1;
+	}
+
+	$0
+}
+endsnippet
+
+
+snippet readCut
+// =========================
+// Read in a cut from a file
+// =========================
+TCut ${1:MyClassName}::readCut(std::string cutfile) {
+	
+	// Open file
+	std::ifstream file(cutfile);
+
+	// Read out lines and add to cut
+	TCut cut;
+	std::string line;
+	while (std::getline(file, line)) {
+		cut += line.c_str();
+	}
+
+	// Return full cut
+	return cut;
+}
+$0
+endsnippet
+
+
+snippet printVar
+std::cout << "${1:Variable}: " << ${2:variable} << std::endl;
+endsnippet
+
+
+snippet eventList
+// Clone old tree into new tree, with no entries
+${1:newtree} = ${2:oldtree}->CloneTree(0);
+
+// Select only events passing cut
+std::string elistname = "elist_" + $3;
+$2->Draw((">>" + elistname).c_str(), ${4:cut});
+TEventList * eventList = (TEventList*)gDirectory->Get(elistname.c_str());
+
+// Loop over event list
+for (int i = 0; i < eventList->GetN(); ++i) {
+	
+	// Get current entry from old tree
+	$2->GetEntry(eventList->GetEntry(i));
+
+	// Fill new tree
+	$1->Fill();
+}
+$0
+endsnippet
+
+
+snippet loopTree
+for (int i = 0; i < ${1:tree}->GetEntries(); i++) {
+	
+	// Get current entry
+	$1->GetEntry(i);
+}
+endsnippet
+
+
+snippet tcanvas
+TCanvas * ${1:canvas} = new TCanvas("$1", "", 500, 400);
+$0
+endsnippet
