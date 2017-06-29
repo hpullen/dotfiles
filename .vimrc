@@ -111,6 +111,8 @@ nnoremap <silent> <leader>p "+p
 nnoremap <silent> <leader>tp :r ~/pplx/.tmux.clipboard<CR>
 " Paste from pplx vim clipboard with \vp
 nnoremap <silent> <leader>vp :r ~/pplx/.vim.clipboard<CR>
+" Select last pasted text with gp
+nnoremap gp `[v`]
 
 " Mappings for editing/sourcing vimrc
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
@@ -144,6 +146,12 @@ augroup saveView
     autocmd!
     autocmd BufWinLeave *.* mkview! 
     autocmd BufWinEnter *.* silent loadview
+augroup END
+
+" Turn off gitgutter on pplx files
+augroup pplxFiles
+    autocmd!
+    autocmd BufWinEnter */pplx/* GitGutterDisable
 augroup END
 
 " Fix highlight colour in Sneak (need to call before colorscheme)
@@ -221,10 +229,10 @@ Plug 'vim-syntastic/syntastic'
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 " Solarized for color_coded
 Plug 'NigoroJr/color_coded-colorschemes'
-" " Fugitive
+" Fugitive
 " Plug 'tpope/vim-fugitive'
-" " Gitgutter
-" Plug 'airblade/vim-gitgutter'
+" Gitgutter
+Plug 'airblade/vim-gitgutter'
 " Surround
 Plug 'tpope/vim-surround'
 " Abolish
