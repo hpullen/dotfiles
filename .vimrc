@@ -81,27 +81,13 @@ augroup filetype_C
     autocmd!
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
     autocmd FileType c,cpp setlocal comments-=:// comments+=f://
+    autocmd FileType c,cpp noremap <buffer> <silent> <leader>3 I//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
+    autocmd FileType c,cpp noremap <buffer> <silent> <leader>4 kddjddk^3xI//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
+    autocmd FileType c,cpp noremap <buffer> <silent> <leader>5 Istd::cout<space><<<space>"<esc>A"<space><<<space>std::endl;<esc>
 augroup END
 
 " Strip all trailing whitespace with \W
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-
-" Create equals signs after line of text
-nnoremap <silent> <leader>1 yypVr=
-" Surround line with Python comments
-nnoremap <silent> <leader>2 I#<space><esc>yyPVr=0r#lr<space>jyypVr=0r#lr<space>
-" Surround line with C comments
-noremap <silent> <leader>3 I//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
-" Regenerate C comments around line
-noremap <silent> <leader>4 kddjddk^3xI//<space><esc>yyPVr=0r/lr/lr<space>jyypVr=0r/lr/lr<space>
-" Put quotes and std::cout around line
-noremap <silent> <leader>5 Istd::cout<space><<<space>"<esc>A"<space><<<space>std::endl;<esc>
-" Convert normal object to pointer
-noremap <silent> <leader>6 ^ywwwi = new pxbbbbbea*^
-" Print variable on next line
-noremap <silent> <leader>7 ^Wywostd::cout << "pi: "A << pa<< std::endl;^
-" Indent line to match bullet point above
-noremap <leader>8 ?^\p\s<CR>ygnjPv0r<space>^
 
 " Copy to system clipboard in visual mode with \y
 vnoremap <silent> <leader>y "+y
@@ -149,10 +135,10 @@ augroup saveView
 augroup END
 
 " Turn off gitgutter on pplx files
-augroup pplxFiles
-    autocmd!
-    autocmd BufWinEnter */pplx/* GitGutterDisable
-augroup END
+" augroup pplxFiles
+    " autocmd!
+    " autocmd BufWinEnter */pplx/* GitGutterDisable
+" augroup END
 
 " Fix highlight colour in Sneak (need to call before colorscheme)
 augroup fixSneakHighlight
@@ -165,8 +151,10 @@ augroup END
 " Use spellcheck in text files
 augroup filetype_text
     autocmd!
+    autocmd FileType test nnoremap <buffer> <silent> <leader>1 yypVr=
     autocmd FileType text setlocal spell
     autocmd FileType text setlocal textwidth=0
+    autocmd FileType text noremap <buffer> <leader>8 ?^\p\s<CR>ygnjPv0r<space>^
 augroup END
 
 " Latex autocommands
@@ -189,6 +177,12 @@ augroup filetype_vim
     autocmd FileType vim setlocal shortmess+=c
     autocmd FileType vim setlocal textwidth=0
     autocmd FileType vim setlocal wrap
+augroup END
+
+" Python file autocommands
+augroup filetype_python
+    autocmd!
+autocmd Filetype python nnoremap <buffer><silent> <leader>2 I#<space><esc>yyPVr=0r#lr<space>jyypVr=0r#lr<space>
 augroup END
 
 " Colourscheme
