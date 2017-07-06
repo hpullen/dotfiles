@@ -151,7 +151,7 @@ augroup END
 " Use spellcheck in text files
 augroup filetype_text
     autocmd!
-    autocmd FileType test nnoremap <buffer> <silent> <leader>1 yypVr=
+    autocmd FileType text nnoremap <buffer> <silent> <leader>1 yypVr=
     autocmd FileType text setlocal spell
     autocmd FileType text setlocal textwidth=0
     autocmd FileType text noremap <buffer> <leader>8 ?^\p\s<CR>ygnjPv0r<space>^
