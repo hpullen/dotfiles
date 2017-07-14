@@ -182,7 +182,8 @@ augroup END
 " Python file autocommands
 augroup filetype_python
     autocmd!
-autocmd Filetype python nnoremap <buffer><silent> <leader>2 I#<space><esc>yyPVr=0r#lr<space>jyypVr=0r#lr<space>
+    autocmd Filetype python nnoremap <buffer><silent> <leader>2 I#<space><esc>yyPVr=0r#lr<space>jyypVr=0r#lr<space>
+    autocmd Filetype python setlocal nosmartindent
 augroup END
 
 " Colourscheme
