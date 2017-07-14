@@ -104,6 +104,7 @@ alias la=" gls -a --color=auto"
 alias ll=" gls -l --color=auto"
 alias cls=" clear && gls --color=auto"
 alias cd=" cd"
+alias sed=gsed # Use GNU sed
 
 # Use colordiff instead of diff
 alias diff=colordiff
