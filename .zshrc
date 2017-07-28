@@ -101,7 +101,7 @@ alias del="rmtrash"
 # Use GNU ls for colors
 alias ls=" gls --color=auto"
 alias la=" gls -a --color=auto"
-alias ll=" gls -l --color=auto"
+alias ll=" gls -lh --color=auto"
 alias cls=" clear && gls --color=auto"
 alias cd=" cd"
 alias sed=gsed # Use GNU sed
