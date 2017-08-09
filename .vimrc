@@ -155,6 +155,8 @@ augroup filetype_text
     autocmd FileType text setlocal spell
     autocmd FileType text setlocal textwidth=0
     autocmd FileType text noremap <buffer> <leader>8 ?^\p\s<CR>ygnjPv0r<space>^
+    autocmd FileType text hi SpellBad ctermfg=red
+    autocmd FileType text hi SpellCap ctermfg=yellow
 augroup END
 
 " Latex autocommands
@@ -264,6 +266,8 @@ Plug 'dkarter/bullets.vim'
 Plug 'wikitopian/hardmode'
 " Easy vim-tmux navigation
 Plug 'christoomey/vim-tmux-navigator'
+" Distraction-free writing environment
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 " Vundle (needed for YouCompleteMe)
