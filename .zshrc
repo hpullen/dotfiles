@@ -97,6 +97,7 @@ alias vimrc="/Applications/MacVim.app/Contents/MacOS/Vim ~/.vimrc"
 alias c="clear"
 alias del="rmtrash"
 alias dirs="dirs -v"
+alias cdirs="builtin dirs -c"
 
 # Aliases with space (don't store in history)
 # Use GNU ls for colors
