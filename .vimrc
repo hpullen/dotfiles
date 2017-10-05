@@ -170,6 +170,7 @@ augroup filetype_tex
     autocmd FileType tex,plaintex,latex nnoremap <buffer> <leader>ed /\u\u\.<CR>f.i\@<ESC>
     autocmd FileType tex,plaintex,latex let b:ycm_largefile=1
     autocmd FileType tex,plaintex,latex hi clear texItalStyle
+    autocmd FileType tex,plaintex,latex iab ± $\pm$
     autocmd BufWritePre tex,plaintex,latex hi clear texItalStyle
 augroup END
 
