@@ -98,6 +98,7 @@ alias c="clear"
 alias del="rmtrash"
 alias dirs="dirs -v"
 alias cdirs="builtin dirs -c"
+alias grep="grep -i --color" # Case insensitive colored grep
 
 # Aliases with space (don't store in history)
 # Use GNU ls for colors
@@ -268,6 +269,9 @@ function exit {
         tmux detach
     fi
 }
+
+# Source log functions
+source ~/.custom_functions/logs.sh
 
 # cd to previous working directory
 cd $CWD
