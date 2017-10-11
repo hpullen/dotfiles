@@ -157,6 +157,8 @@ augroup filetype_text
     autocmd FileType text noremap <buffer> <leader>8 ?^\p\s<CR>ygnjPv0r<space>^
     autocmd FileType text hi SpellBad ctermfg=red
     autocmd FileType text hi SpellCap ctermfg=yellow
+    " Don't spellcheck all caps words
+    autocmd FileType text syn match myExCapitalWords +\<\w*[A-Z]\K*\>+ contains=@NoSpell
 augroup END
 
 " Latex autocommands
