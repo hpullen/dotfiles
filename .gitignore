@@ -7,4 +7,4 @@
 !.wakeup
 !.gitignore
 !.zshrc
-!.custom_functions/*
+!.custom_functions

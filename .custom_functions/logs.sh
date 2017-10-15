@@ -142,3 +142,118 @@ function hlog {
     fi
     vim ~/cernbox/dphil/logs/$YEAR/$MONTHNAME/$DAY.txt
 }
+
+function clog {
+    DAY1=$(date +%d)
+    MONTH1=$(date +%m)
+    YEAR1=$(date +%y)
+    DAY2=$(date -v-1d +%d)
+    MONTH2=$(date -v-1d +%m)
+    YEAR2=$(date -v-1d +%y)
+
+    # Format days
+    if [[ ${#DAY1} -lt 2 ]]; then
+        DAY1="0"$DAY1
+    elif [[ $DAY1 -gt 31 ]]; then
+        echo "Please specify a valid date!"
+        return -1
+    fi
+    if [[ ${#DAY2} -lt 2 ]]; then
+        DAY2="0"$DAY2
+    elif [[ $DAY2 -gt 31 ]]; then
+        echo "Please specify a valid date!"
+        return -1
+    fi
+
+    # Format month
+    if [[ $MONTH1 =~ ^[0-9]+$ ]]; then
+        if [[ $MONTH1 -gt 12 ]]; then
+            echo "Please specify a valid month!"
+            return -1
+        elif [[ ${#MONTH1} -eq 1 ]]; then
+            MONTH1="0"$MONTH1
+        fi
+    else
+        if [[ $MONTH1 =~ ^(jan|Jan|january|January)$ ]]; then
+            MONTH1=01
+        elif [[ $MONTH1 =~ ^(feb|Feb|february|February)$ ]]; then
+            MONTH1=02
+        elif [[ $MONTH1 =~ ^(mar|Mar|march|March)$ ]]; then
+            MONTH1=03
+        elif [[ $MONTH1 =~ ^(apr|Apr|april|April)$ ]]; then
+            MONTH1=04
+        elif [[ $MONTH1 =~ ^(may|May)$ ]]; then
+            MONTH1=05
+        elif [[ $MONTH1 =~ ^(jun|Jun|june|June)$ ]]; then
+            MONTH1=06
+        elif [[ $MONTH1 =~ ^(jul|Jul|july|July)$ ]]; then
+            MONTH1=07
+        elif [[ $MONTH1 =~ ^(aug|Aug|august|August)$ ]]; then
+            MONTH1=08
+        elif [[ $MONTH1 =~ ^(sep|Sep|sept|Sept|september|September)$ ]]; then
+            MONTH1=09
+        elif [[ $MONTH1 =~ ^(oct|Oct|october|October)$ ]]; then
+            MONTH1=10
+        elif [[ $MONTH1 =~ ^(nov|Nov|november|November)$ ]]; then
+            MONTH1=11
+        elif [[ $MONTH1 =~ ^(dec|Dec|december|December)$ ]]; then
+            MONTH1=12
+        fi
+    fi
+    if [[ $MONTH2 =~ ^[0-9]+$ ]]; then
+        if [[ $MONTH2 -gt 12 ]]; then
+            echo "Please specify a valid month!"
+            return -1
+        elif [[ ${#MONTH2} -eq 1 ]]; then
+            MONTH2="0"$MONTH2
+        fi
+    else
+        if [[ $MONTH2 =~ ^(jan|Jan|january|January)$ ]]; then
+            MONTH2=01
+        elif [[ $MONTH2 =~ ^(feb|Feb|february|February)$ ]]; then
+            MONTH2=02
+        elif [[ $MONTH2 =~ ^(mar|Mar|march|March)$ ]]; then
+            MONTH2=03
+        elif [[ $MONTH2 =~ ^(apr|Apr|april|April)$ ]]; then
+            MONTH2=04
+        elif [[ $MONTH2 =~ ^(may|May)$ ]]; then
+            MONTH2=05
+        elif [[ $MONTH2 =~ ^(jun|Jun|june|June)$ ]]; then
+            MONTH2=06
+        elif [[ $MONTH2 =~ ^(jul|Jul|july|July)$ ]]; then
+            MONTH2=07
+        elif [[ $MONTH2 =~ ^(aug|Aug|august|August)$ ]]; then
+            MONTH2=08
+        elif [[ $MONTH2 =~ ^(sep|Sep|sept|Sept|september|September)$ ]]; then
+            MONTH2=09
+        elif [[ $MONTH2 =~ ^(oct|Oct|october|October)$ ]]; then
+            MONTH2=10
+        elif [[ $MONTH2 =~ ^(nov|Nov|november|November)$ ]]; then
+            MONTH2=11
+        elif [[ $MONTH2 =~ ^(dec|Dec|december|December)$ ]]; then
+            MONTH2=12
+        fi
+    fi
+    set -A monthnames January February March April May June July August September October November December
+    MONTH1NAME=${monthnames[${MONTH1}]}
+    MONTH2NAME=${monthnames[${MONTH2}]}
+
+    # Format year
+    if [[ ${#YEAR1} -eq 2 ]]; then
+        YEAR1="20"$YEAR1
+    elif [ ${#YEAR1} -ne 4 ]; then
+        echo "Please specify a valid year!"
+        return -1
+    fi
+    if [[ ${#YEAR2} -eq 2 ]]; then
+        YEAR2="20"$YEAR2
+    elif [ ${#YEAR2} -ne 4 ]; then
+        echo "Please specify a valid year!"
+        return -1
+    fi
+
+    vim -O ~/cernbox/dphil/logs/$YEAR2/$MONTH2NAME/$DAY2.txt ~/cernbox/dphil/logs/$YEAR1/$MONTH1NAME/$DAY1.txt 
+
+
+
+}
