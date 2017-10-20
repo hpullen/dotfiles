@@ -216,6 +216,8 @@ packadd! matchit
 " Plugins
 " Vim-plug
 call plug#begin()
+" Pencil colorscheme
+Plug 'reedes/vim-colors-pencil'
 " NerdCommenter autocommenting
 Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer
@@ -272,6 +274,16 @@ Plug 'wikitopian/hardmode'
 Plug 'christoomey/vim-tmux-navigator'
 " Distraction-free writing environment
 Plug 'junegunn/goyo.vim'
+" Vim devicons
+Plug 'ryanoasis/vim-devicons'
+" Visual split
+Plug 'wellle/visual-split.vim'
+" Easy window resizing
+Plug 'simeji/winresizer'
+" " Lighter status bar
+" Plug 'itchyny/lightline.vim'
+" NERDtree syntax highlighting
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 call plug#end()
 
 " Vundle (needed for YouCompleteMe)
@@ -409,3 +421,23 @@ let g:bullets_enabled_file_types = [
     \ 'scratch',
     \ 'tex'
      \]
+
+" Devicons settings
+" Pattern matches
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.sh\.e\d\+'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.sh\.o\d\+'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['\.tar\.gz'] = ''
+" Exact filename matches
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['makefile'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ''
+" Custom extensions
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cut'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['param'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['o'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['root'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
