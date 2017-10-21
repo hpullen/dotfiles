@@ -323,4 +323,4 @@ eval "$(fasd --init auto)"
 
 # cd to previous working directory
 cd $CWD
-clear && ls
+clear
