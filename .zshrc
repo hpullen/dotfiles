@@ -5,11 +5,6 @@ CWD="`pwd`"
 export TERM='xterm-256color'
 export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
 
-# Set titlebar colours in iTerm
-echo -e "\033]6;1;bg;red;brightness;0\a"
-echo -e "\033]6;1;bg;blue;brightness;51\a"
-echo -e "\033]6;1;bg;green;brightness;40\a"
-
 # Use macvim instead of vim
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
