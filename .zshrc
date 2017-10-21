@@ -5,6 +5,11 @@ CWD="`pwd`"
 export TERM='xterm-256color'
 export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
 
+# Set titlebar colours in iTerm
+echo -e "\033]6;1;bg;red;brightness;0\a"
+echo -e "\033]6;1;bg;blue;brightness;51\a"
+echo -e "\033]6;1;bg;green;brightness;40\a"
+
 # Use macvim instead of vim
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
@@ -27,6 +32,10 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_beginning"
 POWERLEVEL9K_STATUS_VERBOSE="FALSE"
 
+# Change colours for dir
+POWERLEVEL9K_DIR_HOME_BACKGROUND="blue"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="black"
+
 # Colours for OS icon
 POWERLEVEL9K_OS_ICON_BACKGROUND="white"
 POWERLEVEL9K_OS_ICON_FOREGROUND="black"
@@ -38,7 +47,20 @@ POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
 POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
 POWERLEVEL9K_BATTERY_LOW_COLOR='red'
 POWERLEVEL9K_BATTERY_ICON=''
+# To do: change background colour of battery to 'none'
 # POWERLEVEL9K_BATTERY_ICON=' '
+
+# Segment separators
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
+
+# Git colours
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='green'
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND='black'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='black'
 
 # Time format
 POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M}"
@@ -255,6 +277,11 @@ alias td="tmux detach"
 
 alias songname="spotify status | /usr/bin/grep Track && spotify status | /usr/bin/grep Artist || echo 'No song is playing!'"
 
+# Create backup file
+function bak {
+    cp $1 $1.bak
+}
+
 # Split tmux into three panes for coding
 function tmux_coding {
     tmux split-window -h\;
@@ -283,3 +310,4 @@ eval "$(fasd --init auto)"
 
 # cd to previous working directory
 cd $CWD
+clear && ls
