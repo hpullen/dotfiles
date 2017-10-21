@@ -52,7 +52,7 @@ else
 fi
 
 # Right prompt: return status of last command, battery level, time
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery time)    
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs battery time)    
 
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="false"
@@ -64,7 +64,7 @@ HIST_STAMPS="dd/mm/yyyy"
 setopt HIST_IGNORE_SPACE
 
 # Plugins to load
-plugins=(common-aliases brew git fancy-ctrl-z osx extract python pip fast-syntax-highlighting solarized-man)
+plugins=(common-aliases git fancy-ctrl-z osx extract python pip fast-syntax-highlighting solarized-man)
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -111,6 +111,9 @@ alias sed=gsed # Use GNU sed
 
 # Use colordiff instead of diff
 alias diff=colordiff
+
+# Look at weather
+alias weather="curl wttr.in"
 
 # ssh aliases
 alias pplx="ssh -Y pullen@pplxint8.physics.ox.ac.uk"
@@ -250,6 +253,8 @@ alias kp="tmux kill-pane"
 alias kw="tmux kill-window"
 alias td="tmux detach"
 
+alias songname="spotify status | /usr/bin/grep Track && spotify status | /usr/bin/grep Artist || echo 'No song is playing!'"
+
 # Split tmux into three panes for coding
 function tmux_coding {
     tmux split-window -h\;
@@ -272,6 +277,9 @@ function exit {
 
 # Source log functions
 source ~/.custom_functions/logs.sh
+
+# Load fasd
+eval "$(fasd --init auto)"
 
 # cd to previous working directory
 cd $CWD
