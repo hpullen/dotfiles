@@ -30,7 +30,7 @@
 		"environment":                { "fg": "solarized:base3", "bg": "solarized:green", "attrs": [] },
 		"attached_clients":           { "fg": "solarized:base3", "bg": "solarized:green", "attrs": [] },
 		"date":                       { "fg": "solarized:base1", "bg": "solarized:base03", "attrs": [] },
-		"time":                       { "fg": "solarized:base1", "bg": "solarized:base03", "attrs": ["bold"] },
+		"time":                       { "fg": "solarized:base1", "bg": "solarized:base03", "attrs": [] },
 		"time:divider":               { "fg": "solarized:base1", "bg": "solarized:base03", "attrs": [] },
 		"system_load":                { "fg": "solarized:base1", "bg": "solarized:base03", "attrs": [] },
 		"weather_temp_gradient":      { "fg": "solarized:base3", "bg": "solarized:base01", "attrs": [] },
