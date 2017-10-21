@@ -5,6 +5,11 @@ CWD="`pwd`"
 export TERM='xterm-256color'
 export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
 
+# Set titlebar colours in iTerm
+echo -e "\033]6;1;bg;red;brightness;0\a"
+echo -e "\033]6;1;bg;blue;brightness;51\a"
+echo -e "\033]6;1;bg;green;brightness;40\a"
+
 # Use macvim instead of vim
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
@@ -27,9 +32,21 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_beginning"
 POWERLEVEL9K_STATUS_VERBOSE="FALSE"
 
+# Change colours for dir
+POWERLEVEL9K_DIR_HOME_BACKGROUND="none"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="blue"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="none"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="blue"
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="none"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="blue"
+
 # Colours for OS icon
-POWERLEVEL9K_OS_ICON_BACKGROUND="white"
-POWERLEVEL9K_OS_ICON_FOREGROUND="black"
+POWERLEVEL9K_OS_ICON_BACKGROUND="none"
+POWERLEVEL9K_OS_ICON_FOREGROUND="default"
+
+# Colours for status of command
+POWERLEVEL9K_STATUS_ERROR_BACKGROUND='none'
+POWERLEVEL9K_STATUS_ERROR_ICON=''
 
 # Battery symbols and colours
 POWERLEVEL9K_BATTERY_CHARGING='yellow'
@@ -38,10 +55,28 @@ POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
 POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
 POWERLEVEL9K_BATTERY_LOW_COLOR='red'
 POWERLEVEL9K_BATTERY_ICON=''
+POWERLEVEL9K_BATTERY_VERBOSE=false
+# To do: change background colour of battery to 'none'
 # POWERLEVEL9K_BATTERY_ICON=' '
+
+# Segment separators
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='%F{default}  '
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
+POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%F{default}|'
+POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%F{default}|'
+
+# Git colours
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='none'
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND='green'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='none'
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='none'
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='yellow'
 
 # Time format
 POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M}"
+POWERLEVEL9K_TIME_FOREGROUND="default"
+POWERLEVEL9K_TIME_BACKGROUND="none"
 
 # Left prompt: os icon, current directory, git info
 # Depends on whether pplx is mounted
@@ -98,7 +133,7 @@ alias c="clear"
 alias del="rmtrash"
 alias dirs="dirs -v"
 alias cdirs="builtin dirs -c"
-alias grep="grep -i --color" # Case insensitive colored grep
+alias grep="grep -i -I --color" # Case insensitive colored grep
 
 # Aliases with space (don't store in history)
 # Use GNU ls for colors
@@ -255,6 +290,11 @@ alias td="tmux detach"
 
 alias songname="spotify status | /usr/bin/grep Track && spotify status | /usr/bin/grep Artist || echo 'No song is playing!'"
 
+# Create backup file
+function bak {
+    cp $1 $1.bak
+}
+
 # Split tmux into three panes for coding
 function tmux_coding {
     tmux split-window -h\;
@@ -283,3 +323,4 @@ eval "$(fasd --init auto)"
 
 # cd to previous working directory
 cd $CWD
+clear

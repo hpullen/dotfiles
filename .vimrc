@@ -53,6 +53,11 @@ nnoremap K i<CR><ESC>
 nnoremap <leader>k i"<CR>"<ESC>
 nnoremap <leader>j i'<CR>'<ESC>
 
+" Tab navigation
+nnoremap <C-t> :tabprev<CR>
+nnoremap <C-y> :tabnext<CR>
+nnoremap <C-x> :tabnew<CR>
+
 " Modify search options
 " Smart case sensitivity
 set ignorecase
@@ -222,8 +227,8 @@ Plug 'reedes/vim-colors-pencil'
 Plug 'scrooloose/nerdcommenter'
 " NerdTree file explorer
 Plug 'scrooloose/nerdtree'
-" Airline
-Plug 'vim-airline/vim-airline'
+" " Airline
+" Plug 'vim-airline/vim-airline'
 " Airline themes
 Plug 'vim-airline/vim-airline-themes'
 " Syntastic
@@ -280,8 +285,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'wellle/visual-split.vim'
 " Easy window resizing
 Plug 'simeji/winresizer'
-" " Lighter status bar
-" Plug 'itchyny/lightline.vim'
+" Lighter status bar
+Plug 'itchyny/lightline.vim'
 " NERDtree syntax highlighting
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 call plug#end()
@@ -314,14 +319,16 @@ nnoremap <leader>u :UndotreeToggle<CR>
 
 " Airline settings
 set laststatus=2
-" Use powerline fonts
-let g:airline_powerline_fonts=1
-" Solarized colorscheme for airline
-let g:airline_theme = 'solarized'
-" Show buffers/tabs at top
-let g:airline#extensions#tabline#enabled=1
-" Show filename only in buffer/tab display
-let g:airline#extensions#tabline#fnamemod = ':t'
+set noshowmode
+let g:lightline = {'colorscheme': 'solarized'}
+" " Use powerline fonts
+" let g:airline_powerline_fonts=1
+" " Solarized colorscheme for airline
+" let g:airline_theme = 'solarized'
+" " Show buffers/tabs at top
+" let g:airline#extensions#tabline#enabled=1
+" " Show filename only in buffer/tab display
+" let g:airline#extensions#tabline#fnamemod = ':t'
 
 " YouCompleteMe settings
 " Default extra conf location
