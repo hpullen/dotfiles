@@ -41,7 +41,7 @@ POWERLEVEL9K_OS_ICON_FOREGROUND="default"
 
 # Colours for status of command
 POWERLEVEL9K_STATUS_ERROR_BACKGROUND='none'
-POWERLEVEL9K_STATUS_ERROR_ICON=''
+POWERLEVEL9K_FAIL_ICON=''
 
 # Battery symbols and colours
 POWERLEVEL9K_BATTERY_CHARGING='yellow'
@@ -82,7 +82,7 @@ else
 fi
 
 # Right prompt: return status of last command, battery level, time
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs battery time)    
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs tmux battery time)    
 
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="false"
@@ -122,7 +122,7 @@ unsetopt correct
 
 # General aliases
 alias zshrc="/Applications/MacVim.app/Contents/MacOS/Vim ~/.zshrc"
-alias sourcez="source ~/.zshrc"
+alias zr="source ~/.zshrc"
 alias vimrc="/Applications/MacVim.app/Contents/MacOS/Vim ~/.vimrc"
 alias c="clear"
 alias del="rmtrash"
@@ -166,36 +166,6 @@ autoload -U zmv
 # Load zcalc (command line calculator)
 autoload -Uz zcalc
 
-# General functions
-# cd and cls
-function cdl { cd "$@" && clear && ls; }
-
-# Move contents of directory into a new subdirectory
-function mvToDir {
-    DIRNAME="$1"
-    mkdir ../$DIRNAME
-    mv * ../$DIRNAME
-    mv ../$DIRNAME .
-}
-
-# Delete all files in directory except one
-function delAllExcept {
-    FILENAME="$1"
-    mv $FILENAME ..
-    del *
-    mv ../$FILENAME .
-}
-
-# Restore deleted files from trash
-function restore { 
-    FILENAME="$1"
-    TRASHPATH="~/.Trash/$FILENAME"
-    mv "$TRASHPATH" .
-}
-
-# Mark the location of a directory to return to later
-function mark { export $1="`pwd`"; }
-
 # Reload directory if it has broken (e.g. due to closed ssh connection)
 function reloadDir { 
     cwd="`pwd`"
@@ -212,72 +182,7 @@ function reloadDir {
     modify_omz
 }
 
-# Copy contents of a directory to another directory
-function copyContents {
-    OLDDIR='$1'
-    NEWDIR='$2'
-    cp -r "$OLDDIR/*" $NEWDIR
-}
-alias cpc='copyContents'
-
-# Remote directory mounting
-function mount_pplx {
-    if [ -d ~/pplx ] ; then
-        echo "pplx already mounted"
-    else
-        mkdir ~/pplx
-        sshfs -o idmap=user pullen@pplxint8.physics.ox.ac.uk:/home/pullen ~/pplx
-    fi
-}
-function mount_lxplus {
-    if [ -d ~/lxplus ]; then
-        echo "lxplus already mounted"
-    else
-        mkdir ~/lxplus
-        sshfs -o idmap=user hpullen@lxplus.cern.ch:/afs/cern.ch/work/h/hpullen ~/lxplus
-    fi
-}
-function mount_gangadir {
-    if [ -d ~/gangadir ]; then
-        echo "gangadir already mounted"
-    else
-        mkdir ~/gangadir
-        sshfs -o idmap=user pullen@pplxint9.physics.ox.ac.uk:/data/lhcb/users/pullen/gangadir ~/gangadir
-    fi
-}
-function unmount_all {
-    if [ -d ~/pplx ]; then
-        umount -f ~/pplx
-        rmdir ~/pplx
-        echo "pplx unmounted"
-    else
-        echo "pplx not currently mounted"
-    fi
-    if [ -d ~/lxplus ]; then
-        umount -f ~/lxplus
-        rmdir ~/lxplus
-        echo "lxplus unmounted"
-    else
-        echo "lxplus not currently mounted"
-    fi
-    if [ -d ~/gangadir ]; then
-        umount -f ~/gangadir
-        rmdir ~/gangadir
-        echo "gangadir unmounted"
-    else
-        echo "gangadir not currently mounted"
-    fi
-    # Put back git status
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-    source $ZSH/oh-my-zsh.sh
-    modify_omz
-}
-
-# Mounting aliases
-alias mp="mount_pplx && reloadDir"
-alias mg="mount_gangadir && reloadDir"
-
-# tmux aliases 
+# Tmux aliases
 alias ks="tmux kill-session"
 alias kp="tmux kill-pane"
 alias kw="tmux kill-window"
@@ -285,33 +190,13 @@ alias td="tmux detach"
 
 alias songname="spotify status | /usr/bin/grep Track && spotify status | /usr/bin/grep Artist || echo 'No song is playing!'"
 
-# Create backup file
-function bak {
-    cp $1 $1.bak
-}
-
-# Split tmux into three panes for coding
-function tmux_coding {
-    tmux split-window -h\;
-    tmux split-window -v -p 20
-}
-
-# Get rid of all panes except the first
-function tmux_normal {
-    tmux kill-pane -a -t 0
-}
-
-# If in tmux, detach rather than exit
-function exit {
-    if [[ -z $TMUX ]]; then
-        builtin exit
-    else
-        tmux detach
-    fi
-}
-
-# Source log functions
+# Source custom functions
 source ~/.custom_functions/logs.sh
+
+# Custom function aliases
+alias cpc='copyContents'
+alias mp="mount_pplx && reloadDir"
+alias mg="mount_gangadir && reloadDir"
 
 # Load fasd
 eval "$(fasd --init auto)"

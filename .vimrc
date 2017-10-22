@@ -321,6 +321,17 @@ nnoremap <leader>u :UndotreeToggle<CR>
 set laststatus=2
 set noshowmode
 let g:lightline = {'colorscheme': 'solarized'}
+
+" Toggle status 
+function ToggleStatus()
+    if &laststatus
+        set laststatus=0
+    else 
+        set laststatus=2
+    endif
+endfunction
+nnoremap <silent> <leader>tt :call ToggleStatus()<CR>
+
 " " Use powerline fonts
 " let g:airline_powerline_fonts=1
 " " Solarized colorscheme for airline
