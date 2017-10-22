@@ -56,7 +56,7 @@ nnoremap <leader>j i'<CR>'<ESC>
 " Tab navigation
 nnoremap <C-t> :tabprev<CR>
 nnoremap <C-y> :tabnext<CR>
-nnoremap <C-x> :tabnew<CR>
+nnoremap <C-n> :tabnew<CR>
 
 " Modify search options
 " Smart case sensitivity
@@ -312,10 +312,10 @@ let g:NERDCompactSexyComs = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Open NERDTree with ctrl-n
-noremap <C-n> :NERDTreeToggle<CR>
+noremap <silent> <leader>n :NERDTreeToggle<CR>
 
 " Open undotree with \u
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
 " Airline settings
 set laststatus=2
@@ -323,7 +323,7 @@ set noshowmode
 let g:lightline = {'colorscheme': 'solarized'}
 
 " Toggle status 
-function ToggleStatus()
+function! ToggleStatus()
     if &laststatus
         set laststatus=0
     else 
