@@ -191,7 +191,10 @@ alias td="tmux detach"
 alias songname="spotify status | /usr/bin/grep Track && spotify status | /usr/bin/grep Artist || echo 'No song is playing!'"
 
 # Source custom functions
-source ~/.custom_functions/logs.sh
+for file in ~/.custom_functions/*.sh; do
+    source $file
+done
+source ~/.custom_functions/*.sh
 
 # Custom function aliases
 alias cpc='copyContents'

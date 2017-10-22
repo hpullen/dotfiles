@@ -54,8 +54,8 @@ nnoremap <leader>k i"<CR>"<ESC>
 nnoremap <leader>j i'<CR>'<ESC>
 
 " Tab navigation
-nnoremap <C-t> :tabprev<CR>
-nnoremap <C-y> :tabnext<CR>
+nnoremap <silent> <C-[> :tabprev<CR>
+nnoremap <silent> <C-]> :tabnext<CR>
 nnoremap <C-n> :tabnew<CR>
 
 " Modify search options
@@ -163,6 +163,7 @@ augroup filetype_text
     autocmd FileType text noremap <buffer> <leader>8 ?^\p\s<CR>ygnjPv0r<space>^
     autocmd FileType text hi SpellBad ctermfg=red
     autocmd FileType text hi SpellCap ctermfg=yellow
+    autocmd FileType text set colorcolumn=0
     " Don't spellcheck all caps words
     autocmd FileType text syn match myExCapitalWords +\<\w*[A-Z]\K*\>+ contains=@NoSpell
 augroup END
@@ -459,3 +460,24 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['log'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['root'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['pdf'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
+
+" Open Goyo
+nnoremap <silent> <leader>g :Goyo<CR>
+
+" Colour modifications
+function! s:highlight()
+    hi VertSplit ctermfg=0 ctermbg=0
+    hi EndOfBuffer cterm=bold ctermfg=0
+    hi SignColumn ctermbg=8
+    hi GitGutterAdd ctermbg=8 ctermfg=2
+    hi GitGutterChange ctermbg=8 ctermfg=3
+    hi GitGutterDelete ctermbg=8 ctermfg=1
+    hi GitGutterChangeDelete ctermbg=8 ctermfg=1
+    hi LineNr ctermbg=8 ctermfg=0 
+endfunction
+augroup my_highlights
+    autocmd!
+    autocmd ColorScheme * call s:highlight()
+augroup end
+call s:highlight()
+
