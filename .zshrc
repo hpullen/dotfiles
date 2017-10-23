@@ -117,6 +117,9 @@ eval `gdircolors /Users/hannahpullen/clone/dircolors-solarized/dircolors.ansi-da
 # Use solarized in zsh tab completion
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
+# ssh-agent lifetime
+zstyle :omz:plugins:ssh-agent lifetime 6h
+
 # Turn off autocorrection
 unsetopt correct
 
@@ -132,10 +135,11 @@ alias grep="grep -i -I --color" # Case insensitive colored grep
 
 # Aliases with space (don't store in history)
 # Use GNU ls for colors
-alias ls=" gls --color=auto"
-alias la=" gls -a --color=auto"
-alias ll=" gls -lh --color=auto"
-alias cls=" clear && gls --color=auto"
+alias ls=" gls --color=auto --group-directories-first"
+alias la=" gls -a --color=auto --group-directories-first"
+alias ll=" gls -lh --color=auto --group-directories-first"
+alias lt=" gls -ltFh --color=auto"
+alias cls=" clear && gls --color=auto --group-directories-first"
 alias cd=" cd"
 alias sed=gsed # Use GNU sed
 
@@ -207,9 +211,3 @@ eval "$(fasd --init auto)"
 # cd to previous working directory
 cd $CWD
 clear
-
-# Start ssh agent
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-    eval `ssh-agent`
-    ssh-add
-fi
