@@ -44,17 +44,18 @@ shift + cmd - 2 : chunkc tiling::window -d 2; khd -p "cmd + alt - 2"
 # switch to last active desktop
 cmd + alt - x   : `id=$(chunkc get _last_active_desktop); khd -p "cmd + alt - $id" &> /dev/null`
 
-# Increase region size with shift + cmd + wasd
-shift + cmd - a : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
-shift + cmd - s : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
+# Adjust LHS/bottom of region with shift + alt + wasd
+shift + alt - a : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
+shift + alt - s : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
+shift + alt - d : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
+shift + alt - w : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
+
+# Adjust RHS/top of region with shift + cmd + wasd
+shift + cmd - s : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
+shift + cmd - a : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
 shift + cmd - w : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
 shift + cmd - d : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
 
-# Decrease region size with shift + alt + wasd
-shift + alt - a : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
-shift + alt - s : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
-shift + alt - w : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
-shift + alt - d : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
 
 # Rotate tree
 shift + cmd - r : chunkc tiling::desktop --rotate 90
