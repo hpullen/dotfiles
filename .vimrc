@@ -473,7 +473,7 @@ function! s:highlight()
     hi GitGutterChange ctermbg=8 ctermfg=3
     hi GitGutterDelete ctermbg=8 ctermfg=1
     hi GitGutterChangeDelete ctermbg=8 ctermfg=1
-    hi LineNr ctermbg=8 ctermfg=0 
+    hi LineNr ctermbg=8 ctermfg=10 
 endfunction
 augroup my_highlights
     autocmd!
