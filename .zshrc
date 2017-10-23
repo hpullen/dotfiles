@@ -129,6 +129,7 @@ alias del="rmtrash"
 alias dirs="dirs -v"
 alias cdirs="builtin dirs -c"
 alias grep="grep -i -I --color" # Case insensitive colored grep
+alias pipes="pipes.sh -t \$(( (RANDOM % 10) ))"
 
 # Aliases with space (don't store in history)
 # Use GNU ls for colors
