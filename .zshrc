@@ -58,7 +58,7 @@ POWERLEVEL9K_BATTERY_VERBOSE=false
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='%F{default}  '
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
 POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%F{default}|'
-POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%F{default}Fa|'
+POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%F{default}|'
 
 # Git colours
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND='none'
@@ -116,9 +116,6 @@ export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 eval `gdircolors /Users/hannahpullen/clone/dircolors-solarized/dircolors.ansi-dark`
 # Use solarized in zsh tab completion
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-# ssh-agent lifetime
-zstyle :omz:plugins:ssh-agent lifetime 6h
 
 # Turn off autocorrection
 unsetopt correct
@@ -205,8 +202,28 @@ alias cpc='copyContents'
 alias mp="mount_pplx && reloadDir"
 alias mg="mount_gangadir && reloadDir"
 
-# Load fasd
-eval "$(fasd --init auto)"
+# Chunk aliases
+alias chunkw="chunkc tiling::window"
+alias chunkd="chunkc tiling::desktop"
+alias chunk_start="brew services start chunkwm"
+alias chunk_stop="brew services stop chunkwm"
+alias chunk_restart="brew services restart chunkwm"
+alias chunk_swap="chunkc tiling::window --swap"
+alias chunk_left="chunk_swap west"
+alias chunk_right="chunk_swap east"
+alias chunk_up="chunk_swap north"
+alias chunk_down="chunk_swap south"
+alias chunk_warp="chunkc tiling::window --warp"
+alias chunk_laptop="chunkc tiling::window --send-to-desktop 2"
+alias chunk_monitor="chunkc tiling::window --send-to-desktop 1"
+alias chunk_float="chunkc tiling::window --toggle float"
+alias chunk_fullscreen="chunkc tiling::window --toggle fullscreen"
+alias chunk_split="chunkc tiling::window --toggle split"
+alias chunk_pad_more="chunkc tiling::desktop --padding inc"
+alias chunk_pad_less="chunkc tiling::desktop --padding dec"
+alias chunk_offset="chunkc tiling::desktop --toggle offset"
+alias chunk_next="chunkc tiling::monitor -f next"
+alias chunk_prev="chunkc tiling::monitor -f prev"
 
 # cd to previous working directory
 cd $CWD

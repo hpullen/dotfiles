@@ -57,6 +57,7 @@ nnoremap <leader>j i'<CR>'<ESC>
 nnoremap <silent> <C-[> :tabprev<CR>
 nnoremap <silent> <C-]> :tabnext<CR>
 nnoremap <C-n> :tabnew<CR>
+unmap <esc>
 
 " Modify search options
 " Smart case sensitivity
