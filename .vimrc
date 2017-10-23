@@ -327,8 +327,10 @@ let g:lightline = {'colorscheme': 'solarized'}
 function! ToggleStatus()
     if &laststatus
         set laststatus=0
+        set showtabline=0
     else 
         set laststatus=2
+        set showtabline=1
     endif
 endfunction
 nnoremap <silent> <leader>tt :call ToggleStatus()<CR>
