@@ -58,7 +58,7 @@ POWERLEVEL9K_BATTERY_VERBOSE=false
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='%F{default}  '
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
 POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%F{default}|'
-POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%F{default}|'
+POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%F{default}Fa|'
 
 # Git colours
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND='none'
@@ -207,3 +207,9 @@ eval "$(fasd --init auto)"
 # cd to previous working directory
 cd $CWD
 clear
+
+# Start ssh agent
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent`
+    ssh-add
+fi
