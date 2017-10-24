@@ -107,9 +107,11 @@ nnoremap <silent> <leader>vp :r ~/pplx/.vim.clipboard<CR>
 nnoremap gp `[v`]
 
 " Mappings for editing/sourcing vimrc
-
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
+
+" Type a pomodoro
+iab pomo 
 
 " Toggle paste mode on and off with F3
 set pastetoggle=<F3>
