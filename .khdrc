@@ -1,3 +1,9 @@
+# Restart khd
+cmd + alt + ctrl - r : brew services restart khd
+
+# Open terminal
+alt - return : open -na /Applications/iTerm.app
+
 # Switch window focus with cmd + hjkl
 cmd - h : chunkc tiling::window --focus west
 cmd - j : chunkc tiling::window --focus south
@@ -32,17 +38,17 @@ shift + ctrl - right : chunkc tiling::window --warp-floating bottom-right
 shift + cmd - up   : chunkc tiling::desktop --padding dec
 shift + cmd - down : chunkc tiling::desktop --padding inc
 
-# Send window to desktop
-shift + alt - x : chunkc tiling::window --send-to-desktop $(chunkc get _last_active_desktop)
-shift + alt - 1 : chunkc tiling::window --send-to-desktop 1
-shift + alt - 2 : chunkc tiling::window --send-to-desktop 2
+# Send window to monitor and don't follow focus
+shift + alt - 1 : chunkc tiling::window --send-to-monitor 1
+shift + alt - 2 : chunkc tiling::window --send-to-monitor 2
 
-# Send window to desktop and switch desktop
-shift + cmd - 1 : chunkc tiling::window -d 1; khd -p "cmd + alt - 1"
-shift + cmd - 2 : chunkc tiling::window -d 2; khd -p "cmd + alt - 2"
+# Send window to monitor and follow focus
+shift + cmd - 1 : chunkc tiling::window --send-to-monitor 1; chunkc tiling::monitor -f 1
+shift + cmd - 2 : chunkc tiling::window --send-to-monitor 2; chunkc tiling::monitor -f 2
 
-# switch to last active desktop
-cmd + alt - x   : `id=$(chunkc get _last_active_desktop); khd -p "cmd + alt - $id" &> /dev/null`
+# Switch monitor
+cmd - 1   : chunkc tiling::monitor -f 1
+cmd - 2   : chunkc tiling::monitor -f 2
 
 # Adjust LHS/bottom of region with shift + alt + wasd
 shift + alt - a : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
@@ -83,3 +89,7 @@ shift + cmd - e : chunkc tiling::window --toggle split
 
 # Float / unfloat window
 shift + cmd - t : chunkc tiling::window --toggle float
+
+# Change desktop layout
+ctrl + alt - b : chunkc tiling::desktop --layout bsp
+ctrl + alt - m : chunkc tiling::desktop --layout monocle
