@@ -82,7 +82,7 @@ shift + cmd - f : chunkc tiling::window --toggle fullscreen
 shift + alt - f : chunkc tiling::window --toggle native-fullscreen
 
 # Toggle window parent zoom
-shift + cmd - p : chunkc tiling::window --toggle parent
+shift + alt - p : chunkc tiling::window --toggle parent
 
 # Toggle window split type
 shift + cmd - e : chunkc tiling::window --toggle split

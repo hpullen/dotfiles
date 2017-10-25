@@ -94,7 +94,7 @@ HIST_STAMPS="dd/mm/yyyy"
 setopt HIST_IGNORE_SPACE
 
 # Plugins to load
-plugins=(common-aliases git fancy-ctrl-z osx extract python pip fast-syntax-highlighting solarized-man)
+plugins=(common-aliases git fancy-ctrl-z osx extract python pip fast-syntax-highlighting solarized-man zsh-autosuggestions)
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -191,6 +191,9 @@ alias kw="tmux kill-window"
 alias td="tmux detach"
 
 alias songname="spotify status | /usr/bin/grep Track && spotify status | /usr/bin/grep Artist || echo 'No song is playing!'"
+
+# Colour for autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
 
 # Source custom functions
 for file in ~/.custom_functions/*.sh; do
