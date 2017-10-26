@@ -236,3 +236,4 @@ alias chunk_desktop="chunkc tiling::desktop"
 # cd to previous working directory
 cd $CWD
 clear
+# sh ~/.custom_functions/greeting.sh
