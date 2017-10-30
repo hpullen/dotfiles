@@ -88,7 +88,7 @@ shift + alt - p : chunkc tiling::window --toggle parent
 shift + cmd - e : chunkc tiling::window --toggle split
 
 # Float / unfloat window
-shift + cmd - t : chunkc tiling::window --toggle float
+shift + alt - t : chunkc tiling::window --toggle float
 
 # Change desktop layout
 ctrl + alt - b : chunkc tiling::desktop --layout bsp

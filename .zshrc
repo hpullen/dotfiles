@@ -94,7 +94,7 @@ HIST_STAMPS="dd/mm/yyyy"
 setopt HIST_IGNORE_SPACE
 
 # Plugins to load
-plugins=(common-aliases git fancy-ctrl-z osx extract python pip fast-syntax-highlighting solarized-man zsh-autosuggestions)
+plugins=(common-aliases git fancy-ctrl-z osx extract python pip fast-syntax-highlighting solarized-man)
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
