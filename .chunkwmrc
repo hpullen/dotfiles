@@ -29,10 +29,10 @@ chunkc set global_desktop_offset_right   20
 chunkc set global_desktop_offset_left    20
 chunkc set global_desktop_offset_gap     15
 
-chunkc set 1_desktop_offset_top          50
-chunkc set 1_desktop_offset_bottom       50
-chunkc set 1_desktop_offset_left         50
-chunkc set 1_desktop_offset_right        50
+chunkc set 1_desktop_offset_top          40
+chunkc set 1_desktop_offset_bottom       40
+chunkc set 1_desktop_offset_left         40
+chunkc set 1_desktop_offset_right        40
 chunkc set 1_desktop_offset_gap          15
 
 chunkc set 3_desktop_offset_top          190
