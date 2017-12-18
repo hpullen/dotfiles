@@ -1,6 +1,9 @@
 # Save current directory
 CWD="`pwd`"
 
+# Use profiler
+# zmodload zsh/zprof
+
 # Export environment variabes
 export TERM='xterm-256color'
 export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
