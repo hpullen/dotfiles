@@ -979,7 +979,7 @@ prompt_ssh() {
 }
 
 prompt_tmux() {
-  if [[ -n $TMUX ]]; then
+  if [[ -n $TMUX && $(tmux show-options -g | grep "status off") ]]; then
     "$1_prompt_segment" "$0" "$2" "$DEFAULT_COLOR" "magenta" "" 'TMUX_ICON'
   fi
 }
