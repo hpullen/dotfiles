@@ -294,6 +294,8 @@ Plug 'simeji/winresizer'
 Plug 'itchyny/lightline.vim'
 " NERDtree syntax highlighting
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Games
+Plug 'jmanoel7/vim-games'
 call plug#end()
 
 " Vundle (needed for YouCompleteMe)
