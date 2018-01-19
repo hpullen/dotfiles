@@ -151,8 +151,8 @@ alias diff=colordiff
 alias weather="curl wttr.in"
 
 # ssh aliases
-alias pplx="ssh -Y pullen@pplxint8.physics.ox.ac.uk"
-alias lxplus="ssh -Y hpullen@lxplus.cern.ch"
+alias pplx="tmux rename-window pplx && ssh -Y pullen@pplxint8.physics.ox.ac.uk"
+alias lxplus="tmux rename-window lxplus && ssh -Y hpullen@lxplus.cern.ch"
 
 # Suffix aliases (automatically open these files in vim)
 alias -s txt=$EDITOR
