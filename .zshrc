@@ -206,7 +206,7 @@ source ~/.custom_functions/*.sh
 
 # Custom function aliases
 alias cpc='copyContents'
-alias mp="mount_pplx && reloadDir"
+alias mp="tmux rename-window Plots && mount_pplx && reloadDir"
 alias mg="mount_gangadir && reloadDir"
 
 # Chunk aliases
