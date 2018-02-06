@@ -240,3 +240,8 @@ alias chunk_desktop="chunkc tiling::desktop"
 cd $CWD
 clear
 # sh ~/.custom_functions/greeting.sh
+
+# Set path to include local executables
+path+=("$HOME/.local/bin")
+typeset -U path
+export PATH
