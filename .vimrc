@@ -207,8 +207,8 @@ set background=dark
 colorscheme solarized
 
 " Timeout
-set timeoutlen=200
-set ttimeoutlen=200
+" set timeoutlen=200
+" set ttimeoutlen=200
 
 " Files to ignore in vim wild search
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf,*.root,*.o,*.un~

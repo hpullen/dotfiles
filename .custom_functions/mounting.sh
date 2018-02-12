@@ -20,7 +20,7 @@ function mount_gangadir {
         echo "gangadir already mounted"
     else
         mkdir ~/gangadir
-        sshfs -o idmap=user pullen@pplxint9.physics.ox.ac.uk:/data/lhcb/users/pullen/gangadir ~/gangadir
+        sshfs -o idmap=user pullen@pplxint9.physics.ox.ac.uk:/data/lhcb/users/pullen/ ~/gangadir
     fi
 }
 function unmount_all {
