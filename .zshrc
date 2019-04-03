@@ -140,6 +140,7 @@ alias ls=" gls --color=auto --group-directories-first"
 alias la=" gls -a --color=auto --group-directories-first"
 alias ll=" gls -lh --color=auto --group-directories-first"
 alias lt=" gls -ltFh --color=auto"
+alias lth="lt | head"
 alias cls=" clear && gls --color=auto --group-directories-first"
 alias cd=" cd"
 alias sed=gsed # Use GNU sed
